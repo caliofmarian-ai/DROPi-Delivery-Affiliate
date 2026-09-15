@@ -1,40 +1,43 @@
 # Affiliate Programme Register
 
-Verified: 2026-09-15. Re-check programme terms before activation because commercial terms can change.
+Verified: 2026-09-16. Re-check programme terms before activation because commercial terms can change.
 
 ## Amazon.ie Associates
 
 Purpose: broad physical-product catalogue for delivery gear.
 
-Current official information reviewed at launch:
+Current state:
+- Associates account created.
+- Production tag configured as a Railway environment variable, never committed to Git.
+- Amazon-specific disclosure is enabled when the environment variable is present.
+- Final live-click verification and owner tax-interview completion remain operational follow-ups.
+
+Current programme information:
 - Amazon.ie offers an Associates programme for publishers/content creators.
 - Commission varies by category.
 - Amazon requires a clear affiliate disclosure and, once participating, the site-level statement: `As an Amazon Associate I earn from qualifying purchases.`
-- Amazon’s application guidance says it expects robust original content and gives roughly 10 recent posts as a useful rule of thumb. The launch site contains 12 original guides.
-
-Activation checklist:
-1. Deploy on a domain controlled by DROPi.
-2. Confirm all 12 guides are public and render correctly.
-3. Apply to Amazon.ie Associates.
-4. After approval, set `AMAZON_IE_ASSOC_TAG`.
-5. Validate actual tagged links using Amazon’s own tools.
-6. Confirm the Amazon-specific disclosure is visible after the environment variable is enabled.
 
 ## Sendcloud Affiliate Programme
 
 Purpose: European ecommerce shipping-software referrals.
 
-Current official information reviewed at launch:
-- Sendcloud publicly advertises 100% commission on the referred customer’s first paid month.
-- It advertises 90-day attribution.
-- Programme terms include qualification conditions and can change; the live terms must govern.
-- The programme is operated through PartnerStack.
+Status: **PENDING REVIEW** — application submitted through PartnerStack on 2026-09-16.
+
+Current evidence:
+- Sendcloud operates the affiliate programme through PartnerStack.
+- The public Sendcloud affiliate page currently advertises 100% commission on a referred customer's first paid month and a 90-day attribution window.
+- The PartnerStack application dashboard for DROPi Delivery currently displays an account offer structure of **10% on referrals for 24 months**.
+- Sendcloud's affiliate terms state that the affiliate commission plan and maximum commission period are displayed in the affiliate's PartnerStack account and that Sendcloud may change them.
+- Therefore, DROPi Delivery must treat the approved PartnerStack account offer as authoritative for its own economics, not assume that the public marketing-page offer applies to this account.
+- No Sendcloud affiliate URL is active on DROPi Delivery until approval.
 
 Activation checklist:
-1. Apply as a content publisher / ecommerce-tools affiliate.
-2. Obtain the approved unique referral URL.
-3. Set `SENDCLOUD_AFFILIATE_URL` in Railway.
-4. Keep claims limited to facts verified from current official materials.
+1. Wait for Sendcloud review/approval.
+2. Accept the applicable programme terms in PartnerStack if requested.
+3. Confirm the final commission structure shown in the approved account.
+4. Obtain the unique approved referral URL.
+5. Set `SENDCLOUD_AFFILIATE_URL` in Railway only.
+6. Verify the live redirect and PartnerStack click reporting.
 
 ## ShipStation Affiliate Program
 

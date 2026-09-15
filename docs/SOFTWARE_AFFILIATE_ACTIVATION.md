@@ -1,6 +1,6 @@
 # Software Affiliate Activation Runbook
 
-Verified against official programme pages on 2026-09-15.
+Verified against current Sendcloud programme materials and the DROPi Delivery PartnerStack application state on 2026-09-16.
 
 ## Purpose
 
@@ -11,22 +11,38 @@ DROPi Delivery can monetise software-intent articles without holding inventory b
 Official programme: https://www.sendcloud.com/partnerships/affiliate-program/
 Terms: https://www.sendcloud.com/affiliate-program-terms/
 
-Current public programme information reviewed on 2026-09-15:
-- affiliate platform: PartnerStack;
-- public offer: 100% of the referred customer's first paid month, subject to current programme terms;
-- attribution: last click with a 90-day cookie window;
-- current terms require the referred customer to buy a paid subscription within the attribution window and create at least 10 shipping labels in a single month for commission eligibility;
-- self-referrals, immediate-family referrals and referrals for the affiliate's own employer/company are not commissionable under the current terms;
-- programme terms and commission rules may change and must be rechecked before publishing specific payout claims.
+### Current state
+
+`PENDING REVIEW` — DROPi Delivery's application has been received in PartnerStack.
+
+### Commission evidence and authority
+
+There is currently a material difference between public marketing information and the offer displayed for the DROPi Delivery application:
+
+- the public Sendcloud affiliate page advertises 100% of the referred customer's first paid month and a 90-day cookie window;
+- the DROPi Delivery PartnerStack application dashboard currently displays `Earn 10% on all referrals for 24 months`;
+- Sendcloud Affiliate Program Terms Article 4.6 states that the commission plan and maximum period of receiving commissions are displayed in the affiliate's PartnerStack account;
+- Article 4.7 allows Sendcloud to change commission rates and the maximum commission period.
+
+For DROPi Delivery, the final offer displayed in the **approved PartnerStack account** is authoritative for commercial planning. Do not publish a specific payout promise merely because the public landing page shows a different offer.
+
+Other current affiliate-term requirements include:
+- referred customer purchase of a paid subscription within the applicable attribution period;
+- at least 10 shipping labels created by the referred customer in a single month for commission eligibility under the current terms;
+- no self-referrals, immediate-family referrals, or referrals for the affiliate's own employer/company;
+- existing customers and prospects already being worked by Sendcloud are not eligible under the stated conditions.
 
 ### Owner-only application step
 
-1. Open the official Sendcloud Affiliate Program page.
-2. Apply with accurate owner/business information through the provider's PartnerStack flow.
-3. Complete any identity, payout or tax information directly with Sendcloud/PartnerStack. Do not commit this information to GitHub.
-4. After approval, copy only the unique approved affiliate/referral URL needed for site tracking.
+Application submitted on 2026-09-16. While review is pending:
+1. Monitor PartnerStack/email for the Sendcloud decision.
+2. Do not activate a Sendcloud affiliate redirect before approval.
+3. On approval, read and accept the programme terms presented in PartnerStack.
+4. Confirm the final commission offer shown in the account.
+5. Copy only the unique approved affiliate/referral URL required for site tracking.
+6. Keep identity, payout and tax information inside PartnerStack/Sendcloud and out of GitHub.
 
-### Activation
+### Activation after approval
 
 Set the approved URL only in Railway production:
 
