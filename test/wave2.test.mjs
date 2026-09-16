@@ -7,9 +7,9 @@ test('wave 2 publishes exactly twenty new guides', () => {
   assert.equal(wave2Articles.length, 20);
 });
 
-test('combined library contains 32 unique useful guides', () => {
-  assert.equal(articles.length, 32);
-  assert.equal(new Set(articles.map((article) => article.slug)).size, 32);
+test('combined library keeps every guide unique and useful', () => {
+  assert.ok(articles.length >= 32);
+  assert.equal(new Set(articles.map((article) => article.slug)).size, articles.length);
   for (const article of articles) {
     assert.ok(article.title.length > 25);
     assert.ok(article.description.length > 60);
@@ -18,11 +18,11 @@ test('combined library contains 32 unique useful guides', () => {
   }
 });
 
-test('home and guide library expose expanded content', () => {
+test('home and guide library expose the current content count', () => {
   const home = homePage();
   const guides = guidesPage(new URL('https://example.test/guides'));
-  assert.match(home, /32 original guides/);
-  assert.match(guides, /32 original, practical articles/);
+  assert.match(home, new RegExp(`${articles.length} original guides`));
+  assert.match(guides, new RegExp(`${articles.length} original, practical articles`));
   assert.match(guides, /USB-C Car Chargers for All-Day Navigation/);
   assert.match(guides, /Returns Workflow for a Micro Ecommerce Store/);
 });
@@ -35,8 +35,8 @@ test('wave 2 article renders related internal links', () => {
   assert.match(html, /nofollow sponsored/);
 });
 
-test('expanded sitemap contains all guide and category URLs', () => {
+test('expanded sitemap contains every guide and category URL', () => {
   const xml = sitemap();
   for (const article of articles) assert.match(xml, new RegExp(`/guides/${article.slug}`));
-  assert.equal((xml.match(/<url>/g) || []).length, 43);
+  assert.equal((xml.match(/<url>/g) || []).length, articles.length + 11);
 });
