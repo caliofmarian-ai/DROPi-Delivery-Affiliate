@@ -21,7 +21,7 @@ export function enhancePublisherReadinessHtml(html, env = process.env) {
 
   let result = html;
   const oldFooter = '<div class="footer-links"><a href="/affiliate-disclosure">Affiliate disclosure</a><a href="/privacy">Privacy</a><a href="/about">About</a></div>';
-  const newFooter = '<div class="footer-links"><a href="/affiliate-disclosure">Affiliate disclosure</a><a href="/privacy">Privacy</a><a href="/cookies">Cookies</a><a href="/terms">Terms</a><a href="/contact">Contact</a><a href="/about">About</a></div>';
+  const newFooter = '<div class="footer-links"><a href="/affiliate-disclosure">Affiliate disclosure</a><a href="/privacy">Privacy</a><a href="/cookies">Cookies</a><a href="/terms">Terms</a><a href="/contact">Contact</a><a href="/legal">Legal</a><a href="/about">About</a></div>';
   result = result.replace(oldFooter, newFooter);
 
   const validation = webgainsValidationCode(env);

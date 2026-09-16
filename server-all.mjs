@@ -12,13 +12,14 @@ import {
   enhancePublisherReadinessHtml,
   termsPageDefinition
 } from './src/publisher-readiness.mjs';
+import { augmentLegalSitemap, enhancePrivacyNotice, legalPageDefinition } from './src/legal-readiness.mjs';
 
 const port = Number(process.env.PORT || 3000);
 const cssUrl = new URL('./public/styles.css', import.meta.url);
 
 function send(res, status, body, type = 'text/html; charset=utf-8', extra = {}) {
   const output = type.startsWith('text/html')
-    ? enhancePublisherReadinessHtml(enhanceHtmlAccessibility(body))
+    ? enhancePrivacyNotice(enhancePublisherReadinessHtml(enhanceHtmlAccessibility(body)))
     : body;
   res.writeHead(status, { 'content-type': type, 'cache-control': status === 200 ? 'public, max-age=300' : 'no-store', ...securityHeaders, ...extra });
   res.end(output);
@@ -36,7 +37,10 @@ const server = http.createServer(async (req, res) => {
     if (url.pathname === '/health') return send(res, 200, JSON.stringify({ ok: true, guides: articles.length }), 'application/json; charset=utf-8', { 'cache-control': 'no-store', 'x-robots-tag': 'noindex' });
     if (url.pathname === '/styles.css') return send(res, 200, await readFile(cssUrl, 'utf8'), 'text/css; charset=utf-8');
     if (url.pathname === '/robots.txt') return send(res, 200, robotsTxt(), 'text/plain; charset=utf-8');
-    if (url.pathname === '/sitemap.xml') return send(res, 200, augmentPublisherSitemap(sitemap(), siteUrl()), 'application/xml; charset=utf-8');
+    if (url.pathname === '/sitemap.xml') {
+      const publisherReady = augmentPublisherSitemap(sitemap(), siteUrl());
+      return send(res, 200, augmentLegalSitemap(publisherReady, siteUrl()), 'application/xml; charset=utf-8');
+    }
     if (url.pathname === '/feed.xml') return send(res, 200, atomFeed(), 'application/atom+xml; charset=utf-8');
     if (url.pathname === '/') return send(res, 200, homePage());
 
@@ -61,6 +65,7 @@ const server = http.createServer(async (req, res) => {
     if (url.pathname === '/cookies') return send(res, 200, layout(cookiesPageDefinition()));
     if (url.pathname === '/terms') return send(res, 200, layout(termsPageDefinition()));
     if (url.pathname === '/contact') return send(res, 200, layout(contactPageDefinition()));
+    if (url.pathname === '/legal') return send(res, 200, layout(legalPageDefinition()));
 
     if (url.pathname.startsWith('/guides/')) {
       const article = getArticle(decodeURIComponent(url.pathname.slice('/guides/'.length)));
