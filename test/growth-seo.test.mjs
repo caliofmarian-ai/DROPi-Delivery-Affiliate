@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { categories, getArticle } from '../src/content-all.mjs';
+import { articles, categories, getArticle } from '../src/content-all.mjs';
 import { articlePage, categoryPath, guidesPage, homePage, robotsTxt, sitemap } from '../src/site-all.mjs';
 
 test('category navigation uses stable crawlable landing pages', () => {
@@ -36,8 +36,8 @@ test('robots policy keeps affiliate redirects and health endpoint out of crawlin
   assert.match(robots, /Sitemap: http:\/\/localhost:3000\/sitemap.xml/);
 });
 
-test('sitemap contains category hubs and lastmod metadata', () => {
+test('sitemap contains category hubs and lastmod metadata for every URL', () => {
   const xml = sitemap();
   for (const category of categories) assert.match(xml, new RegExp(`/guides/category/${category.slug}`));
-  assert.equal((xml.match(/<lastmod>/g) || []).length, 43);
+  assert.equal((xml.match(/<lastmod>/g) || []).length, articles.length + categories.length + 6);
 });

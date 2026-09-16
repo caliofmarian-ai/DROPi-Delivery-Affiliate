@@ -1,51 +1,76 @@
 # Organic Content Roadmap
 
-## Launch cluster — completed
+## Current library — 52 guides live in source
 
-12 original guides are live in source:
-- delivery driver starter kit for Ireland;
-- courier phone mounts;
-- power-bank capacity;
-- Irish rain gear;
-- thermal delivery bags;
-- van cargo organisation;
-- dash cams;
+DROPi Delivery now has three editorial waves covering five commercial clusters. Every page must answer a distinct workflow problem and add original explanation; do not create near-duplicate pages by changing only a city, product name or year.
+
+## Wave 1 — launch cluster — completed (12 guides)
+
+The original launch set established the core categories:
+- delivery-driver starter kit and phone/power/weather essentials;
+- thermal food-delivery bags;
+- van cargo organisation, dash cameras, cleaning and parcel trolley workflows;
 - e-bike courier gear;
-- label printer + parcel scale setup;
-- Sendcloud vs ShipStation decision framework;
-- delivery vehicle cleaning kit;
-- folding parcel trolley guide.
+- parcel scales, thermal printers and shipping-software comparison.
 
-## Next 20 pages — prioritised by commercial intent
+## Wave 2 — commercial-intent expansion — completed (20 guides)
 
-### Driver gear
-1. Best specifications for a USB-C car charger used with navigation all day.
-2. Wired vs wireless charging for delivery drivers.
-3. Winter delivery-driver kit for Ireland.
-4. Summer heat checklist for phones and vans.
-5. Headlamp and torch buying guide for doorstep delivery.
+Wave 2 deepened existing problems rather than duplicating launch pages:
+- USB-C and wireless charging;
+- winter/summer shift equipment and lighting;
+- moving blankets, straps, boot organisers, seat protection and compact vacuums;
+- waterproof phone protection, locks, e-bike range and visibility;
+- Sendcloud, ShipStation, shipping-software decision workflow, label sizes, scales and returns.
+
+## Wave 3 — workflow depth — completed (20 guides)
+
+### Driver essentials
+- Multi-device vehicle charging and power sharing.
+- Headlamp vs hand-torch workflow.
+- Touchscreen gloves for repeated phone use.
+- Reusable hydration/bottle setup for long shifts.
 
 ### Vehicle & van
-6. Moving blankets: sizes, materials and cleaning.
-7. Ratchet-strap storage and inspection checklist.
-8. Boot organisers for multi-stop work.
-9. Seat protection for food and parcel delivery.
-10. Compact vacuum choices for commercial-use vehicles.
+- Portable tyre inflators.
+- Portable jump starters.
+- Folding crates vs soft organisers.
+- Boot liners and cargo mats.
 
 ### Bike / e-bike
-11. Waterproof phone protection for bike couriers.
-12. Courier locks: how to choose for repeated short stops.
-13. E-bike battery range planning for delivery shifts.
-14. Visibility kit for winter evenings.
+- Panniers vs courier backpack.
+- Compact puncture-repair kit.
+- Mini pump vs CO₂ inflator.
+- Waterproof cycling overshoes.
 
-### Ecommerce shipping
-15. Sendcloud review focused on a 20–100 parcels/month seller.
-16. ShipStation review focused on multi-channel sellers.
-17. Shipping software decision tree for Irish ecommerce.
-18. Thermal label size guide by common workflow.
-19. Parcel scale accuracy and platform-size guide.
-20. Returns workflow for a micro ecommerce store.
+### Food delivery
+- Reusable drink carriers and spill control.
+- Removable thermal-bag dividers.
+- Thermal-bag cleaning kit and reset routine.
+- Pizza delivery bag sizing.
 
-## Editorial rule
+### Shipping tools
+- Packing-tape dispensers.
+- Small-seller carton-size strategy.
+- Paper vs air-based void-fill workflow.
+- One-bench small-ecommerce dispatch-station layout.
 
-Each new page must answer a distinct problem and add original explanation. Do not create near-duplicate pages by changing only a city, product name or year.
+## Next editorial gate
+
+Do not automatically publish another large wave only to increase page count. The next set should be prioritised using evidence from:
+- search impressions and queries after the final domain is indexed;
+- request-level guide views, treated only as an operational signal;
+- outbound commercial clicks by guide and partner;
+- gaps discovered while activating approved affiliate programmes;
+- seasonal Ireland/Europe delivery problems that are genuinely distinct from existing pages.
+
+The raw `outbound_click / article_view` ratio is not a unique-person conversion rate because requests can include crawlers and repeat visits. See `docs/MEASUREMENT.md`.
+
+## Editorial rules
+
+1. Solve a distinct user problem; no thin keyword variants.
+2. Do not claim physical testing unless DROPi actually performed and documented it.
+3. Prefer specification and workflow comparisons over unsupported rankings.
+4. Avoid publishing prices unless there is a reliable process to keep them current.
+5. Keep commercial links disclosed and useful even before a partner programme is approved.
+6. Avoid unsupported safety, medical, environmental or legal claims.
+7. Update older guides when product standards or partner terms materially change instead of creating a new yearly duplicate.
