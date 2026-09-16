@@ -170,7 +170,9 @@ export function disclosurePage() {
 }
 
 export function privacyPage() {
-  return commonMeta(basePrivacyPage());
+  const oldServerLogCopy = '<h2>Server logs</h2><p>The hosting provider may create routine technical logs needed to operate and secure the service. DROPi Delivery’s own affiliate redirect logging is designed to record only the partner, referring guide identifier and time of click; it does not intentionally record an IP address or set a tracking cookie.</p>';
+  const newServerLogCopy = '<h2>Server and application logs</h2><p>The hosting provider may create routine technical logs needed to operate and secure the service. DROPi Delivery’s structured application telemetry records guide identifiers and timestamps for guide requests, and partner, referring guide identifier, monetisation state and time for commercial redirects. The application telemetry does not intentionally include IP addresses, user-agent strings, referrer URLs, cookies, session IDs or user IDs.</p><p>These events are request-level operational signals and can include crawlers or repeat requests; they are not unique-person analytics.</p>';
+  return commonMeta(basePrivacyPage().replace(oldServerLogCopy, newServerLogCopy));
 }
 
 export function robotsTxt() {

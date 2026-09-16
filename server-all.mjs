@@ -2,6 +2,7 @@ import http from 'node:http';
 import { readFile } from 'node:fs/promises';
 import { articles, categories, getArticle } from './src/content-all.mjs';
 import { homePage, guidesPage, articlePage, toolsPage, aboutPage, disclosurePage, privacyPage, outboundUrl, sitemap, robotsTxt, atomFeed, siteUrl, layout, categoryPath } from './src/site-all.mjs';
+import { articleViewEvent, outboundClickEvent, telemetryLine } from './src/telemetry.mjs';
 
 const port = Number(process.env.PORT || 3000);
 const cssUrl = new URL('./public/styles.css', import.meta.url);
@@ -54,14 +55,19 @@ const server = http.createServer(async (req, res) => {
 
     if (url.pathname.startsWith('/guides/')) {
       const article = getArticle(decodeURIComponent(url.pathname.slice('/guides/'.length)));
-      if (article) return send(res, 200, articlePage(article));
+      if (article) {
+        if (req.method === 'GET') console.log(telemetryLine(articleViewEvent(article.slug)));
+        return send(res, 200, articlePage(article));
+      }
     }
 
     if (url.pathname.startsWith('/go/')) {
       const partner = url.pathname.slice('/go/'.length);
       const outbound = outboundUrl(partner, url);
       if (outbound) {
-        console.log(JSON.stringify({ event: 'outbound_click', partner, from: outbound.from, monetised: outbound.monetised, at: new Date().toISOString() }));
+        if (req.method === 'GET') {
+          console.log(telemetryLine(outboundClickEvent({ partner, guide: outbound.from, monetised: outbound.monetised })));
+        }
         return redirect(res, 302, outbound.target, { 'x-robots-tag': 'noindex, nofollow' });
       }
     }
