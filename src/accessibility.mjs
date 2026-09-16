@@ -60,8 +60,8 @@ export function enhanceHtmlAccessibility(html) {
       '<aside class="affiliate-note" aria-label="Affiliate disclosure">'
     )
     .replaceAll(
-      '<a class="chip active"',
-      '<a class="chip active" aria-current="page"'
+      '<a class="chip active" href=',
+      '<a class="chip active" aria-current="page" href='
     );
 
   return markNavigation(result, path);
