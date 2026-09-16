@@ -3,15 +3,10 @@ import { readFile } from 'node:fs/promises';
 import { articles, categories, getArticle } from './src/content-all.mjs';
 import { homePage, guidesPage, articlePage, toolsPage, aboutPage, disclosurePage, privacyPage, outboundUrl, sitemap, robotsTxt, atomFeed, siteUrl, layout, categoryPath } from './src/site-all.mjs';
 import { articleViewEvent, outboundClickEvent, telemetryLine } from './src/telemetry.mjs';
+import { securityHeaders } from './src/http-policy.mjs';
 
 const port = Number(process.env.PORT || 3000);
 const cssUrl = new URL('./public/styles.css', import.meta.url);
-const securityHeaders = {
-  'x-content-type-options': 'nosniff',
-  'referrer-policy': 'strict-origin-when-cross-origin',
-  'x-frame-options': 'SAMEORIGIN',
-  'permissions-policy': 'camera=(), microphone=(), geolocation=()'
-};
 
 function send(res, status, body, type = 'text/html; charset=utf-8', extra = {}) {
   res.writeHead(status, { 'content-type': type, 'cache-control': status === 200 ? 'public, max-age=300' : 'no-store', ...securityHeaders, ...extra });
