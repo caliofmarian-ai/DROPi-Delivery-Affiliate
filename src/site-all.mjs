@@ -14,6 +14,10 @@ const esc = (value = '') => String(value)
   .replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;')
   .replaceAll('"', '&quot;').replaceAll("'", '&#039;');
 
+const xmlEsc = (value = '') => String(value)
+  .replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;')
+  .replaceAll('"', '&quot;').replaceAll("'", '&apos;');
+
 const jsonLdTag = (value) =>
   `<script type="application/ld+json">${JSON.stringify(value).replaceAll('<', '\\u003c')}</script>`;
 
@@ -21,10 +25,21 @@ function injectHead(html, fragment) {
   return html.replace('</head>', `${fragment}</head>`);
 }
 
+function verificationMeta() {
+  const tags = [];
+  if (process.env.GOOGLE_SITE_VERIFICATION) {
+    tags.push(`<meta name="google-site-verification" content="${esc(process.env.GOOGLE_SITE_VERIFICATION)}">`);
+  }
+  if (process.env.BING_SITE_VERIFICATION) {
+    tags.push(`<meta name="msvalidate.01" content="${esc(process.env.BING_SITE_VERIFICATION)}">`);
+  }
+  return tags.join('');
+}
+
 function commonMeta(html, robots = 'index,follow') {
   return injectHead(
     html,
-    `<meta name="robots" content="${esc(robots)}"><meta property="og:site_name" content="DROPi Delivery"><meta name="twitter:card" content="summary_large_image">`
+    `<meta name="robots" content="${esc(robots)}"><meta property="og:site_name" content="DROPi Delivery"><meta name="twitter:card" content="summary_large_image"><link rel="alternate" type="application/atom+xml" title="DROPi Delivery — latest guides" href="${esc(siteUrl())}/feed.xml">${verificationMeta()}`
   );
 }
 
@@ -160,6 +175,15 @@ export function privacyPage() {
 
 export function robotsTxt() {
   return `User-agent: *\nAllow: /\nDisallow: /go/\nDisallow: /health\nSitemap: ${siteUrl()}/sitemap.xml\n`;
+}
+
+export function atomFeed() {
+  const sorted = [...articles]
+    .sort((a, b) => b.updated.localeCompare(a.updated) || b.published.localeCompare(a.published) || a.slug.localeCompare(b.slug))
+    .slice(0, 20);
+  const updated = sorted[0]?.updated || '1970-01-01';
+  const entries = sorted.map((article) => `<entry><title>${xmlEsc(article.title)}</title><id>${xmlEsc(siteUrl())}/guides/${xmlEsc(article.slug)}</id><link href="${xmlEsc(siteUrl())}/guides/${xmlEsc(article.slug)}"/><updated>${xmlEsc(article.updated)}T00:00:00Z</updated><published>${xmlEsc(article.published)}T00:00:00Z</published><summary>${xmlEsc(article.description)}</summary></entry>`).join('');
+  return `<?xml version="1.0" encoding="UTF-8"?><feed xmlns="http://www.w3.org/2005/Atom"><title>DROPi Delivery — latest guides</title><id>${xmlEsc(siteUrl())}/</id><link rel="self" type="application/atom+xml" href="${xmlEsc(siteUrl())}/feed.xml"/><link href="${xmlEsc(siteUrl())}/"/><updated>${xmlEsc(updated)}T00:00:00Z</updated><author><name>DROPi Delivery Editorial</name></author>${entries}</feed>`;
 }
 
 export function sitemap() {

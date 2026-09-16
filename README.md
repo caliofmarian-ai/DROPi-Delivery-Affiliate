@@ -5,13 +5,14 @@ DROPi Delivery is an inventory-free editorial commerce business for delivery dri
 ## What is already implemented
 
 - Fast Node.js website with no runtime dependencies.
-- 12 original launch guides covering driver gear, vehicles, bike/e-bike delivery, food delivery and ecommerce shipping.
-- SEO essentials: canonical URLs, Open Graph metadata, Article JSON-LD, sitemap and robots.txt.
+- 32 original guides covering driver gear, vehicles, bike/e-bike delivery, food delivery and ecommerce shipping.
+- SEO essentials: canonical URLs, crawlable category hubs, Open Graph metadata, Article/Breadcrumb/Collection structured data, sitemap with `lastmod`, robots.txt and an Atom feed.
+- Optional Google Search Console and Bing Webmaster Tools verification metadata supplied only through deployment variables.
 - Transparent affiliate disclosure and privacy-first launch configuration.
 - Affiliate-ready outbound routing for Amazon.ie, Sendcloud and ShipStation.
 - Non-personal click events written to hosting logs for basic commercial measurement.
 - Railway configuration and health endpoint.
-- Node test suite validating content count, disclosure, outbound-link behaviour and sitemap coverage.
+- Node test suite validating content, disclosure, outbound-link behaviour, crawl policy and search-discovery metadata.
 
 ## Business rule
 
@@ -27,16 +28,18 @@ npm start
 
 Open `http://localhost:3000`.
 
-## Configure monetisation
+## Configure deployment
 
 Copy `.env.example` to `.env` locally, or set variables in Railway:
 
 - `SITE_URL` — final canonical public URL.
+- `GOOGLE_SITE_VERIFICATION` — Search Console HTML meta verification token, when a final domain is ready.
+- `BING_SITE_VERIFICATION` — Bing Webmaster Tools `msvalidate.01` verification token, when a final domain is ready.
 - `AMAZON_IE_ASSOC_TAG` — only after Amazon.ie Associates approval.
 - `SENDCLOUD_AFFILIATE_URL` — unique approved Sendcloud tracking URL.
 - `SHIPSTATION_AFFILIATE_URL` — unique approved ShipStation/CJ tracking URL.
 
-Do not invent affiliate IDs. Until a variable is configured, DROPi routes to the provider without claiming a tracked commission.
+Do not invent affiliate IDs or verification tokens. Until a partner variable is configured, DROPi routes to the provider without claiming a tracked commission.
 
 ## Deploy
 

@@ -1,7 +1,7 @@
 import http from 'node:http';
 import { readFile } from 'node:fs/promises';
 import { articles, categories, getArticle } from './src/content-all.mjs';
-import { homePage, guidesPage, articlePage, toolsPage, aboutPage, disclosurePage, privacyPage, outboundUrl, sitemap, robotsTxt, siteUrl, layout, categoryPath } from './src/site-all.mjs';
+import { homePage, guidesPage, articlePage, toolsPage, aboutPage, disclosurePage, privacyPage, outboundUrl, sitemap, robotsTxt, atomFeed, siteUrl, layout, categoryPath } from './src/site-all.mjs';
 
 const port = Number(process.env.PORT || 3000);
 const cssUrl = new URL('./public/styles.css', import.meta.url);
@@ -30,6 +30,7 @@ const server = http.createServer(async (req, res) => {
     if (url.pathname === '/styles.css') return send(res, 200, await readFile(cssUrl, 'utf8'), 'text/css; charset=utf-8');
     if (url.pathname === '/robots.txt') return send(res, 200, robotsTxt(), 'text/plain; charset=utf-8');
     if (url.pathname === '/sitemap.xml') return send(res, 200, sitemap(), 'application/xml; charset=utf-8');
+    if (url.pathname === '/feed.xml') return send(res, 200, atomFeed(), 'application/atom+xml; charset=utf-8');
     if (url.pathname === '/') return send(res, 200, homePage());
 
     if (url.pathname === '/guides') {
