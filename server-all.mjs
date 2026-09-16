@@ -12,14 +12,14 @@ import {
   enhancePublisherReadinessHtml,
   termsPageDefinition
 } from './src/publisher-readiness.mjs';
-import { augmentLegalSitemap, legalPageDefinition } from './src/legal-readiness.mjs';
+import { augmentLegalSitemap, enhancePrivacyNotice, legalPageDefinition } from './src/legal-readiness.mjs';
 
 const port = Number(process.env.PORT || 3000);
 const cssUrl = new URL('./public/styles.css', import.meta.url);
 
 function send(res, status, body, type = 'text/html; charset=utf-8', extra = {}) {
   const output = type.startsWith('text/html')
-    ? enhancePublisherReadinessHtml(enhanceHtmlAccessibility(body))
+    ? enhancePrivacyNotice(enhancePublisherReadinessHtml(enhanceHtmlAccessibility(body)))
     : body;
   res.writeHead(status, { 'content-type': type, 'cache-control': status === 200 ? 'public, max-age=300' : 'no-store', ...securityHeaders, ...extra });
   res.end(output);
