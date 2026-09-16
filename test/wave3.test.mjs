@@ -32,7 +32,7 @@ test('combined library now exposes 52 unique guides', () => {
 test('wave 3 article renders disclosure, CTA and related links', () => {
   const html = articlePage(getArticle('portable-tyre-inflator-delivery-vehicle'));
   assert.match(html, /Portable Tyre Inflator for Delivery Vehicles/);
-  assert.match(html, /Check relevant options/);
+  assert.match(html, /Check Amazon\.ie options/);
   assert.match(html, /nofollow sponsored/);
   assert.match(html, /Related guides/);
   assert.match(html, /Affiliate disclosure/);
