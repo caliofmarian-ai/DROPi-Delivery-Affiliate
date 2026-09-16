@@ -5,14 +5,14 @@ DROPi Delivery is an inventory-free editorial commerce business for delivery dri
 ## What is already implemented
 
 - Fast Node.js website with no runtime dependencies.
-- 32 original guides covering driver gear, vehicles, bike/e-bike delivery, food delivery and ecommerce shipping.
+- 52 original commercial-intent guides covering driver gear, vehicles, bike/e-bike delivery, food delivery and ecommerce shipping.
 - SEO essentials: canonical URLs, crawlable category hubs, Open Graph metadata, Article/Breadcrumb/Collection structured data, sitemap with `lastmod`, robots.txt and an Atom feed.
 - Optional Google Search Console and Bing Webmaster Tools verification metadata supplied only through deployment variables.
 - Transparent affiliate disclosure and privacy-first launch configuration.
 - Affiliate-ready outbound routing for Amazon.ie, Sendcloud and ShipStation.
-- Non-personal click events written to hosting logs for basic commercial measurement.
+- Privacy-first request-level commercial measurement for guide views and outbound clicks, with no application-level user identifier or tracking cookie.
 - Railway configuration and health endpoint.
-- Node test suite validating content, disclosure, outbound-link behaviour, crawl policy and search-discovery metadata.
+- Node test suite validating content, disclosure, outbound-link behaviour, crawl policy, search-discovery metadata and telemetry constraints.
 
 ## Business rule
 
@@ -41,9 +41,9 @@ Copy `.env.example` to `.env` locally, or set variables in Railway:
 
 Do not invent affiliate IDs or verification tokens. Until a partner variable is configured, DROPi routes to the provider without claiming a tracked commission.
 
-## Deploy
+## Deploy and measure
 
-See `docs/DEPLOYMENT_RAILWAY.md`.
+See `docs/DEPLOYMENT_RAILWAY.md` for deployment/search activation and `docs/MEASUREMENT.md` for the privacy-first commercial event contract.
 
 ## Commercial plan
 
