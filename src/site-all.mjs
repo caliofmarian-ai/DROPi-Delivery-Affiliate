@@ -6,7 +6,7 @@ import {
   aboutPage as baseAboutPage,
   disclosurePage as baseDisclosurePage,
   privacyPage as basePrivacyPage,
-  outboundUrl,
+  outboundUrl as baseOutboundUrl,
   siteUrl
 } from './site.mjs';
 
@@ -20,6 +20,29 @@ const xmlEsc = (value = '') => String(value)
 
 const jsonLdTag = (value) =>
   `<script type="application/ld+json">${JSON.stringify(value).replaceAll('<', '\\u003c')}</script>`;
+
+export function shopifyProductEnvKey(slug) {
+  const normalized = String(slug || '')
+    .trim()
+    .toUpperCase()
+    .replace(/[^A-Z0-9]+/g, '_')
+    .replace(/^_+|_+$/g, '');
+  return normalized ? `SHOPIFY_PRODUCT_${normalized}_URL` : '';
+}
+
+function configuredShopifyProductUrl(slug) {
+  const key = shopifyProductEnvKey(slug);
+  if (!key) return null;
+  const raw = process.env[key];
+  if (!raw) return null;
+  try {
+    const target = new URL(raw);
+    if (target.protocol !== 'https:' || target.username || target.password) return null;
+    return target.toString();
+  } catch {
+    return null;
+  }
+}
 
 function injectHead(html, fragment) {
   return html.replace('</head>', `${fragment}</head>`);
@@ -59,7 +82,7 @@ function card(article) {
 export function homePage() {
   const latest = articles.slice(0, 6).map(card).join('');
   const categoryCards = categories.map((category) => `<a class="category-card" href="${categoryPath(category.slug)}"><span>${esc(category.name)}</span><p>${esc(category.description)}</p></a>`).join('');
-  const body = `<section class="hero"><div class="eyebrow">Delivery work, without the hype</div><h1>Better gear. Better dispatch. Fewer small failures.</h1><p class="hero-copy">Independent guides for delivery drivers, couriers and small online sellers in Ireland and Europe. We compare what matters in real workflows: reliability, weather, power, cargo organisation and shipping software.</p><div class="hero-actions"><a class="button primary" href="/guides">Browse practical guides</a><a class="button secondary" href="/tools">Compare shipping tools</a></div><div class="trust-row"><span>${articles.length} original guides</span><span>Affiliate links disclosed</span><span>No stock sold by DROPi</span></div></section><section class="section"><div class="section-heading"><div><div class="eyebrow">Find the right workflow</div><h2>Built around delivery problems, not product catalogues</h2></div></div><div class="category-grid">${categoryCards}</div></section><section class="section"><div class="section-heading"><div><div class="eyebrow">Latest guides</div><h2>New practical guides for delivery work</h2></div><a href="/guides">View all ${articles.length} guides →</a></div><div class="article-grid">${latest}</div></section><section class="section split"><div><div class="eyebrow">For online sellers</div><h2>Shipping workflow before software hype</h2><p>Our ecommerce coverage now includes small-seller Sendcloud and multi-channel ShipStation reviews, an Ireland-focused decision tree, label and scale guides, and a returns workflow.</p><a class="text-link" href="/guides/shipping-software-decision-tree-ireland">Open the shipping software decision tree →</a></div><div class="panel"><strong>Monetisation model</strong><p>DROPi Delivery does not need inventory. Revenue is designed around transparent affiliate referrals to relevant products and software. Until a programme is approved, links remain non-affiliate.</p></div></section>`;
+  const body = `<section class="hero"><div class="eyebrow">Delivery work, without the hype</div><h1>Better gear. Better dispatch. Fewer small failures.</h1><p class="hero-copy">Independent guides for delivery drivers, couriers and small online sellers in Ireland and Europe. We compare what matters in real workflows: reliability, weather, power, cargo organisation and shipping software.</p><div class="hero-actions"><a class="button primary" href="/guides">Browse practical guides</a><a class="button secondary" href="/tools">Compare shipping tools</a></div><div class="trust-row"><span>${articles.length} original guides</span><span>Direct sale when verified</span><span>Affiliate fallback disclosed</span></div></section><section class="section"><div class="section-heading"><div><div class="eyebrow">Find the right workflow</div><h2>Built around delivery problems, not product catalogues</h2></div></div><div class="category-grid">${categoryCards}</div></section><section class="section"><div class="section-heading"><div><div class="eyebrow">Latest guides</div><h2>New practical guides for delivery work</h2></div><a href="/guides">View all ${articles.length} guides →</a></div><div class="article-grid">${latest}</div></section><section class="section split"><div><div class="eyebrow">For online sellers</div><h2>Shipping workflow before software hype</h2><p>Our ecommerce coverage now includes small-seller Sendcloud and multi-channel ShipStation reviews, an Ireland-focused decision tree, label and scale guides, and a returns workflow.</p><a class="text-link" href="/guides/shipping-software-decision-tree-ireland">Open the shipping software decision tree →</a></div><div class="panel"><strong>Commerce model</strong><p>DROPi Delivery prefers direct Shopify sales when a real supplier route, Ireland delivery, returns and contribution have been verified. When direct sale is not suitable, disclosed affiliate referrals remain the fallback.</p></div></section>`;
   const jsonLd = {
     '@context': 'https://schema.org',
     '@graph': [
@@ -127,6 +150,14 @@ export function articlePage(article) {
     `<a class="eyebrow" href="${categoryPath(article.category)}">`
   );
 
+  if (article.productQuery && configuredShopifyProductUrl(article.slug)) {
+    const amazonHref = `/go/amazon?query=${encodeURIComponent(article.productQuery)}&from=${encodeURIComponent(article.slug)}`;
+    const amazonCta = `<a class="button primary" rel="nofollow sponsored" href="${amazonHref}">Check Amazon.ie options</a>`;
+    const directHref = `/go/shopify?product=${encodeURIComponent(article.slug)}&from=${encodeURIComponent(article.slug)}`;
+    const directCta = `<div class="stack"><a class="button primary" href="${directHref}">Buy from DROPi</a><a class="button secondary" rel="nofollow sponsored" href="${amazonHref}">Compare Amazon.ie options</a></div>`;
+    html = html.replace(amazonCta, directCta);
+  }
+
   if (related.length) {
     const relatedHtml = `<section class="article-section"><h2>Related guides</h2><ul>${related.map((candidate) => `<li><a class="text-link" href="/guides/${esc(candidate.slug)}">${esc(candidate.title)}</a></li>`).join('')}</ul></section>`;
     html = html.replace('<aside class="method">', `${relatedHtml}<aside class="method">`);
@@ -175,6 +206,17 @@ export function privacyPage() {
   return commonMeta(basePrivacyPage().replace(oldServerLogCopy, newServerLogCopy));
 }
 
+export function outboundUrl(partner, url) {
+  if (partner === 'shopify') {
+    const from = url.searchParams.get('from') || 'unknown';
+    const product = url.searchParams.get('product') || '';
+    const target = configuredShopifyProductUrl(product);
+    if (!target) return null;
+    return { target, from, monetised: true };
+  }
+  return baseOutboundUrl(partner, url);
+}
+
 export function robotsTxt() {
   return `User-agent: *\nAllow: /\nDisallow: /go/\nDisallow: /health\nSitemap: ${siteUrl()}/sitemap.xml\n`;
 }
@@ -202,4 +244,4 @@ export function sitemap() {
   return `<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${entries.map(({ path, lastmod }) => `<url><loc>${siteUrl()}${path}</loc><lastmod>${lastmod}</lastmod></url>`).join('')}</urlset>`;
 }
 
-export { outboundUrl, siteUrl };
+export { siteUrl };
