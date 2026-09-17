@@ -42,13 +42,15 @@ Official references:
 
 | # | Product | Supplier path | Public supplier cost | Ireland benchmark | Staged price | Status / main blocker |
 |---|---|---|---:|---:|---:|---|
-| 1 | AirPro+ Portable Tyre Inflator with LED, SKU V0103048 | InnovaGoods / BigBuy via Spocket | EUR 12.84 observed | Same SKU ~EUR 34.90 manufacturer / ~EUR 39.95 Irish retailer | EUR 32.90 | PENDING — exact Ireland shipping, returns, landed cost |
+| 1 | AirPro+ Portable Tyre Inflator with LED, SKU V0103048 | InnovaGoods / BigBuy via Spocket | EUR 12.84 observed | same SKU ~EUR 34.90 manufacturer / ~EUR 39.95 Irish retailer | EUR 32.90 | PENDING — exact Ireland shipping, returns, landed cost |
 | 2 | Universal Bike Phone Holder | Triton via Spocket | USD 8.05 (~EUR 7.02 at 2026-09-17 FX) | comparable listings ~EUR 18-22 with lower outliers | EUR 18.90 | PENDING — Ireland shipping, ship-from, returns |
 | 3 | 20,000mAh Car Jump Starter, 400A listing | Puce Gaia via Spocket | USD 26.24 (~EUR 22.88) | comparables start ~EUR 33 and extend higher | EUR 34.90 | PENDING — lithium shipping/compliance/returns |
 | 4 | DYMO LabelManager 420P | Tormino, Netherlands | public EUR 195.99; entry dropship discount publicly 5% | Klarna benchmark ~EUR 234.99 | EUR 229.90 | PENDING — business-account eligibility, checkout/VAT, returns |
 | 5 | 4x6 Direct Thermal Shipping Label Printer | CJdropshipping | USD 44.24-50.35; UK-power variant listed | comparable 4x6 printers from ~EUR 79.90 | EUR 69.90 | PENDING — CJ authorization, warehouse, Ireland shipping, VAT/import, returns |
 | 6 | Waterproof Bicycle Bag 5-12L | CJdropshipping | USD 4.02-10.45 depending size/material | waterproof frame bags commonly ~EUR 29-41; low outlier ~EUR 11.94 | EUR 24.90 | PENDING — exact 12L cost, warehouse, Ireland shipping, returns |
 | 7 | Foldable Car Boot Organiser 58cm | CJdropshipping | USD 5.97 | useful comparables ~EUR 25-50; low Temu/Shein outliers ~EUR 5-10 | EUR 19.90 | PENDING — warehouse, Ireland shipping, returns, final landed cost |
+| 8 | AXA DWN 30 USB-C Bike Light Set | Tormino, Netherlands | EUR 25.99 public before account discount | AXA DWN 50 light set benchmark ~EUR 48.96; exact DWN 30 Ireland benchmark still incomplete | EUR 42.90 | PENDING — exact account checkout, model-specific benchmark, returns |
+| 9 | Kryptonite Keeper 510 Folding Lock 100cm | Tormino, Netherlands | EUR 64.99 public before account discount | Klarna Keeper 510 Fold ~EUR 92.48 | EUR 87.90 | PENDING — exact account checkout, combined shipping/returns |
 
 Shopify GIDs:
 
@@ -59,8 +61,14 @@ Shopify GIDs:
 5. 4x6 Direct Thermal Shipping Label Printer — `gid://shopify/Product/16619613978969`
 6. Waterproof Bicycle Bag 5-12L — `gid://shopify/Product/16619617157465`
 7. Foldable Car Boot Organiser 58cm — `gid://shopify/Product/16619617190233`
+8. AXA DWN 30 USB-C Bike Light Set — `gid://shopify/Product/16619620172121`
+9. Kryptonite Keeper 510 Folding Lock 100cm — `gid://shopify/Product/16619620303193`
 
-All seven products remain `DRAFT`. No candidate may be published merely because its paper spread looks attractive.
+All nine products remain `DRAFT`. No candidate may be published merely because its paper spread looks attractive.
+
+## Shopify collection evidence
+
+The smart collection `Bike & E-bike Courier` currently contains four tagged candidates. This confirms the `bike-courier` auto-classification rule is functioning for the new EU security/visibility candidates.
 
 ## Screening notes
 
@@ -79,18 +87,33 @@ Public Tormino screening inputs:
 
 This is screening evidence only, not final landed cost.
 
-Tormino sources:
-- https://tormino.com/pages/dropshipping
-- https://tormino.com/pages/commercial-1
-- https://tormino.com/pages/shipping-delivery
-
 ### CJ 4x6 thermal printer
 
 At the current 2026-09-17 USD/EUR conversion, the maximum public product price of USD 50.35 is about EUR 43.92.
 
-At staged price EUR 69.90, the conservative Shopify standard-card screening fee is about EUR 2.03. That leaves roughly EUR 21.95 for shipping/other direct costs while preserving EUR 2 contribution, or roughly EUR 18.95 if the temporary EUR 3 low-value import duty applies.
+At staged price EUR 69.90, the public product-cost spread is large enough to tolerate a meaningful Ireland shipping cost while still having a plausible path to the EUR 2 threshold. Exact route cost remains mandatory before approval.
 
-This is why the printer remains a stronger candidate than very low-value commodity accessories.
+### AXA DWN 30 + Kryptonite Keeper 510 bundle candidate
+
+Both products are sourced from the same Netherlands supplier path. A potential `Courier Bike Security & Visibility Kit` could improve order economics if Tormino confirms that one Ireland parcel rate can cover both products in a single dropship order.
+
+Do **not** create or advertise this bundle yet. First verify:
+
+- combined parcel shipping price to Ireland;
+- one-parcel fulfilment behaviour;
+- account-level dropship discount;
+- neutral packaging charges for two items;
+- B2B/customer-return workflow;
+- current combined Irish market benchmark.
+
+If those checks pass, bundle contribution should be evaluated separately from single-SKU contribution.
+
+Tormino references:
+- https://tormino.com/pages/dropshipping
+- https://tormino.com/pages/commercial-1
+- https://tormino.com/pages/shipping-delivery
+- https://tormino.com/products/axa-lighting-set-dwn-set-30-lux-usb-c-rechargeable
+- https://tormino.com/products/kryptonite-folding-lock-keeper-510
 
 ## CJdropshipping channel
 
@@ -114,23 +137,29 @@ Promising public-price categories currently include bike bags/holders, tyre infl
 
 | Product / route | Status | Reason |
 |---|---|---|
-| CJ 50kg/10g hanging scale SKU `CJJZGJJY00017-50KG 10G` | REJECTED direct-sale | CJ public product price USD 4.68 before shipping, while Klarna currently shows an Ireland offer around EUR 3.97; no viable direct-sale advantage |
-| CJ 11-14L insulated lunch bags | HOLD for courier use | too small to market truthfully as main food-delivery courier bags; may be useful later as generic lunch/commuter products |
+| CJ 50kg/10g hanging scale SKU `CJJZGJJY00017-50KG 10G` | REJECTED direct-sale | CJ public price USD 4.68 before shipping; Klarna Ireland offer ~EUR 3.97 |
+| CJ rechargeable bicycle light set USD 2.74-3.15 | HOLD | Ireland low-price benchmark ~EUR 8.21 means shipping can erase the EUR 2 threshold; stronger branded EU light candidate already exists |
+| CJ 11-14L insulated lunch bags | HOLD for courier use | too small to market truthfully as primary food-delivery courier bags |
 | 70L insulated thermal bag via WholesalePA UK | REJECTED route | supplier delivery coverage is UK addresses only |
-| DYMO LabelWriter 550 via Tormino | REJECTED route | current Tormino price above a current Ireland benchmark; no price advantage |
-| Mirage / Simson cheap bike phone holders via Tormino | HOLD | EUR 9.95 Ireland shipping absorbs too much margin for a single cheap item |
+| DYMO LabelWriter 550 via Tormino | REJECTED route | Tormino price above current Ireland benchmark |
+| Brother QL-800 via Tormino | REJECTED route | Tormino ~EUR 113.99 while Ireland benchmark ~EUR 107.50 |
+| Tesa packaging tape dispenser via Tormino | REJECTED route | supplier cost too high versus low Ireland dispenser/tape benchmarks |
+| VidaXL folding stair trolley 70kg via Tormino | REJECTED route | Tormino ~EUR 132.99 while stronger Ireland alternatives start ~EUR 82.90 |
+| Stanley SXIF0101 inflator via Tormino | REJECTED route | Tormino ~EUR 65.99 while comparable Ireland cordless inflators are materially cheaper |
+| WOWOW / Oxford reflective vests via Tormino | REJECTED direct-sale | Ireland has certified/basic hi-vis vests from only a few euro; no direct price advantage |
+| Mirage / Simson cheap bike phone holders via Tormino | HOLD | EUR 9.95 Ireland shipping absorbs too much margin for one cheap item |
 | Morvelli 20,000mAh power bank via Spocket | HOLD | battery shipping/compliance and landed cost unresolved; retail competition tight |
 
 ## Supplier strategy
 
 ### Syncee
-Primary connected marketplace. Search `Ship from: EU` + `Shipping to: Ireland`. Use the Free plan for research; do not upgrade until enough SKUs justify recurring cost.
+Primary connected marketplace. Search `Ship from: EU` + `Shipping to: Ireland`. Use Free plan for research; do not upgrade until enough SKUs justify recurring cost.
 
 ### CJdropshipping
 Second sourcing path with no required monthly subscription at Free tier. Good paper prices, but exact Ireland shipping/warehouse availability is currently the gating evidence. Merchant permission is required to install/authorize the Shopify app.
 
 ### Tormino
-Netherlands B2B/dropship supplier. Best suited to higher-value items or bundles because Ireland standard parcel shipping is EUR 9.95 plus EUR 0.50 neutral packaging. Its business-account and B2B-return requirements must be acceptable before use.
+Netherlands B2B/dropship supplier. Best suited to higher-value products and same-supplier bundles because Ireland standard parcel shipping is EUR 9.95 plus EUR 0.50 neutral packaging per item. Business-account and B2B-return requirements must be acceptable before use.
 
 ### Spocket / BigBuy paths
 Keep selectively for SKUs with strong spread. Avoid taking on a paid recurring app cost until the portfolio can cover it.
@@ -151,9 +180,10 @@ Reject or hold when any of the following applies:
 ## Current sourcing priority
 
 1. Use connected Syncee to inspect EU-stock products shipping to Ireland and capture wholesale + shipping costs.
-2. Keep the seven Shopify candidates DRAFT until direct-cost evidence is complete.
-3. Install/authorize CJ only when merchant approval is available; then resolve exact Ireland shipping and warehouse inventory for the three CJ drafts first.
-4. Prefer non-battery/non-regulated accessories while the store is validating fulfilment economics.
-5. Validate returns and product compliance before activation.
-6. After approval, add supplier-authorized images through Shopify CDN, finalise customer-facing copy, set inventory/fulfilment integration, then activate.
-7. Route DROPi Delivery CTAs to Shopify only for `APPROVED` direct-sale products; keep affiliate links as fallback where direct sale is not profitable or practical.
+2. Keep all Shopify candidates DRAFT until direct-cost evidence is complete.
+3. Install/authorize CJ only when merchant approval is available; then resolve exact Ireland shipping and warehouse inventory for the CJ drafts first.
+4. Verify Tormino business-account terms and one-parcel shipping behaviour for the AXA + Kryptonite bundle candidate.
+5. Prefer non-battery/non-regulated accessories while validating fulfilment economics, but retain strong branded EU products when compliance/market value is clearer.
+6. Validate returns and product compliance before activation.
+7. After approval, add supplier-authorized images through Shopify CDN, finalise customer-facing copy, set inventory/fulfilment integration, then activate.
+8. Route DROPi Delivery CTAs to Shopify only for `APPROVED` direct-sale products; keep affiliate links as fallback where direct sale is not profitable or practical.
