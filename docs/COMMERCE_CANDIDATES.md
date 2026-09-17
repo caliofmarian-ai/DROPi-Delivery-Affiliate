@@ -49,6 +49,7 @@ Official references:
 | Universal Bike Phone Holder, silicone/alloy | Triton via Spocket | USD 8.05 (~EUR 7.02 at 2026-09-17 FX) | Comparable Irish listings roughly EUR 18-22, with lower outliers | EUR 18.90 | PENDING | Exact shipping to Ireland + supplier ship-from + returns |
 | 20,000mAh Car Jump Starter, 400A listing | Puce Gaia via Spocket | USD 26.24 (~EUR 22.88 at 2026-09-17 FX) | Comparable Irish listings start around EUR 33 and extend materially higher | EUR 34.90 | PENDING | Lithium shipping, compliance evidence, returns, final landed cost |
 | DYMO LabelManager 420P | Tormino, Netherlands | Public retail EUR 195.99; entry dropship account publicly states 5% discount, final business checkout still unverified | Klarna Ireland benchmark observed EUR 234.99 | EUR 229.90 | PENDING | Tormino business account eligibility + exact discounted checkout/VAT + dropship returns |
+| 4x6 Direct Thermal Shipping Label Printer | CJdropshipping | USD 44.24-50.35 public product range, exact UK-power variant price not yet verified | Comparable 4x6 thermal printer benchmark observed from EUR 79.90 | EUR 69.90 | PENDING | CJ installation/account authorization + exact Ireland shipping + warehouse + VAT/import treatment |
 
 ### DYMO LabelManager 420P screening model
 
@@ -86,6 +87,33 @@ Syncee requires supplier-specific shipping verification: Syncee itself does not 
 
 Official shipping guidance:
 https://help.syncee.com/en/articles/8925120-shipping-information
+
+## Alternative sourcing channel — CJdropshipping
+
+Current public evidence:
+
+- official Shopify app is free to install;
+- CJ Free plan is USD 0/month and supports listing/store authorization;
+- CJ user agreement permits a natural person, legal entity or other eligible organization to register;
+- Shopify store check shows the CJ app has no failed installation requirements for this shop;
+- app is not currently installed;
+- CJ advertises global and EU warehouse/fulfilment capability, but warehouse availability must be verified per SKU;
+- product pages expose base product pricing publicly, while shipping, exact warehouse inventory and route-to-Ireland often require sign-in.
+
+Promising current product examples:
+
+- aluminum rotating bicycle phone holder: USD 4.40 base public price;
+- bicycle navigation phone holders: roughly USD 3.00-4.18 public range;
+- wireless tyre inflators: roughly USD 11.61-13.27 public range;
+- 4x6 direct thermal shipping-label printer: USD 44.24-50.35 public range, with UK power variant listed.
+
+Do not install CJ solely because these paper spreads look attractive. First retain enough promising SKUs to justify adding another supplier app; after install, verify exact shipping/warehouse/destination costs before approval.
+
+Official references:
+- https://apps.shopify.com/cucheng
+- https://www.cjdropshipping.com/integrations/shopify
+- https://www.cjdropshipping.com/prime
+- https://cjdropshipping.com/user-agreement/en
 
 ## Alternative EU supplier — Tormino
 
@@ -143,13 +171,15 @@ Current staged draft products:
 2. Universal Bike Phone Holder — Sourcing Candidate — `gid://shopify/Product/16619601396057`
 3. 20000mAh Car Jump Starter — Sourcing Candidate — `gid://shopify/Product/16619601625433`
 4. DYMO LabelManager 420P — EU Sourcing Candidate — `gid://shopify/Product/16619611455833`
+5. 4x6 Direct Thermal Shipping Label Printer — CJ Sourcing Candidate — `gid://shopify/Product/16619613978969`
 
 ## Current sourcing priority
 
 1. In the connected Syncee retailer interface, filter `Ship from: EU` and `Shipping to: Ireland`, then capture wholesale price and supplier shipping for priority products.
-2. Obtain supplier/account-level shipping to Ireland for the three staged Spocket drafts.
-3. Keep Tormino as a high-value/bundle candidate, not a cheap-accessory source.
-4. Prefer EU-stock suppliers because landed-cost uncertainty is lower.
-5. Validate returns and product compliance before activation.
-6. After approval, add supplier-authorized images through Shopify CDN, finalise customer-facing copy, set inventory/fulfilment integration, and activate.
-7. Route DROPi Delivery commercial CTAs to Shopify for approved direct-sale products; keep affiliate links as fallback where direct sale is not profitable or practical.
+2. Retain CJ as the zero-fixed-cost second sourcing path; install only when the candidate backlog justifies the additional app and permission grant.
+3. Obtain supplier/account-level shipping to Ireland for the three staged Spocket drafts.
+4. Keep Tormino as a high-value/bundle candidate, not a cheap-accessory source.
+5. Prefer EU-stock suppliers because landed-cost uncertainty is lower.
+6. Validate returns and product compliance before activation.
+7. After approval, add supplier-authorized images through Shopify CDN, finalise customer-facing copy, set inventory/fulfilment integration, and activate.
+8. Route DROPi Delivery commercial CTAs to Shopify for approved direct-sale products; keep affiliate links as fallback where direct sale is not profitable or practical.
