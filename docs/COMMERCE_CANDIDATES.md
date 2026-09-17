@@ -48,6 +48,27 @@ Official references:
 | AirPro+ Portable Tyre Inflator with LED, SKU V0103048 | InnovaGoods / BigBuy via Spocket | EUR 12.84 observed public dropship cost | Same SKU observed around EUR 34.90 manufacturer / EUR 39.95 Irish retailer | EUR 32.90 | PENDING | Exact shipping to Ireland + returns + final landed cost |
 | Universal Bike Phone Holder, silicone/alloy | Triton via Spocket | USD 8.05 (~EUR 7.02 at 2026-09-17 FX) | Comparable Irish listings roughly EUR 18-22, with lower outliers | EUR 18.90 | PENDING | Exact shipping to Ireland + supplier ship-from + returns |
 | 20,000mAh Car Jump Starter, 400A listing | Puce Gaia via Spocket | USD 26.24 (~EUR 22.88 at 2026-09-17 FX) | Comparable Irish listings start around EUR 33 and extend materially higher | EUR 34.90 | PENDING | Lithium shipping, compliance evidence, returns, final landed cost |
+| DYMO LabelManager 420P | Tormino, Netherlands | Public retail EUR 195.99; entry dropship account publicly states 5% discount, final business checkout still unverified | Klarna Ireland benchmark observed EUR 234.99 | EUR 229.90 | PENDING | Tormino business account eligibility + exact discounted checkout/VAT + dropship returns |
+
+### DYMO LabelManager 420P screening model
+
+Using public Tormino inputs only, before account-level verification:
+
+- public supplier listing: EUR 195.99 incl. VAT;
+- advertised entry dropship discount: 5%;
+- modeled supplier product cost: ~EUR 186.19;
+- Ireland standard parcel shipping: EUR 9.95;
+- neutral packaging: EUR 0.50/item;
+- staged retail price: EUR 229.90;
+- conservative Shopify standard-card fee including stated Irish VAT on processing fee: ~EUR 5.96;
+- modeled unit contribution: ~EUR 27.30.
+
+This is **screening evidence only**, not an approved landed cost. Final checkout/business pricing and customer-return economics must be verified before activation.
+
+Official Tormino sources:
+- https://tormino.com/collections/label-makers
+- https://tormino.com/pages/dropshipping
+- https://tormino.com/pages/shipping-delivery
 
 ## Syncee supplier/product watch list
 
@@ -73,27 +94,29 @@ Tormino is a Netherlands-based B2B/dropshipping supplier with a Dutch warehouse 
 - neutral dropshipping is available;
 - no minimum order quantity;
 - products ship from the Netherlands;
-- European delivery is generally 1-4 business days depending on destination;
+- Ireland standard parcel shipping is EUR 9.95 and listed delivery is 3-5 business days;
 - entry dropshipping discount is 5%;
 - neutral packaging costs EUR 0.50 per item;
 - automated API/datafeed options exist;
 - dropshipping/B2B orders are excluded from standard returns under its B2B terms;
 - dropshipping account application requests company/business details.
 
-This is a potentially valuable EU route, but do not activate it until operator/business status and customer-return economics are suitable.
+This is potentially useful for higher-value products and bundles. Cheap single items are usually unattractive because EUR 9.95 Ireland shipping absorbs too much margin.
 
 Official references:
 - https://tormino.com/pages/dropshipping
 - https://tormino.com/pages/commercial-1
+- https://tormino.com/pages/shipping-delivery
 
 ## Other watch / hold items
 
 | Product | Supplier path | Status / reason |
 |---|---|---|
 | Morvelli PowerGen 20,000mAh power bank | Spocket / Periwinkle Eros | HOLD — public cost USD 25.84 but battery shipping/compliance and Ireland landed cost unresolved; retail competition is tight |
-| DYMO LabelWriter 550 | Spocket / Ultramarine Dione | HOLD — apparent spread exists, but region/plug suitability and Ireland landed cost must be proven |
+| DYMO LabelWriter 550 | Tormino / other EU sourcing | REJECT current Tormino path — Tormino public price is above a current Irish benchmark for the 550 Turbo; no pricing advantage demonstrated |
 | 70L insulated thermal delivery bag | WholesalePA UK | REJECTED for current Ireland route — supplier states delivery coverage is UK addresses only |
 | Digital postal/parcel scale | EU supplier search | CANDIDATE — Ireland retail benchmarks exist; transparent EU-stock landed cost still needed |
+| Mirage / Simson low-cost bike phone holders | Tormino | HOLD — EUR 9.95 Ireland shipping makes single-item economics weak unless bundled |
 
 ## Rejection / hold principles
 
@@ -119,12 +142,14 @@ Current staged draft products:
 1. AirPro+ Portable Tyre Inflator with LED — `gid://shopify/Product/16617894969689`
 2. Universal Bike Phone Holder — Sourcing Candidate — `gid://shopify/Product/16619601396057`
 3. 20000mAh Car Jump Starter — Sourcing Candidate — `gid://shopify/Product/16619601625433`
+4. DYMO LabelManager 420P — EU Sourcing Candidate — `gid://shopify/Product/16619611455833`
 
 ## Current sourcing priority
 
 1. In the connected Syncee retailer interface, filter `Ship from: EU` and `Shipping to: Ireland`, then capture wholesale price and supplier shipping for priority products.
 2. Obtain supplier/account-level shipping to Ireland for the three staged Spocket drafts.
-3. Prefer EU-stock suppliers because landed-cost uncertainty is lower.
-4. Validate returns and product compliance before activation.
-5. After approval, add supplier-authorized images through Shopify CDN, finalise customer-facing copy, set inventory/fulfilment integration, and activate.
-6. Route DROPi Delivery commercial CTAs to Shopify for approved direct-sale products; keep affiliate links as fallback where direct sale is not profitable or practical.
+3. Keep Tormino as a high-value/bundle candidate, not a cheap-accessory source.
+4. Prefer EU-stock suppliers because landed-cost uncertainty is lower.
+5. Validate returns and product compliance before activation.
+6. After approval, add supplier-authorized images through Shopify CDN, finalise customer-facing copy, set inventory/fulfilment integration, and activate.
+7. Route DROPi Delivery commercial CTAs to Shopify for approved direct-sale products; keep affiliate links as fallback where direct sale is not profitable or practical.
