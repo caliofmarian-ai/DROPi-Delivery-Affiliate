@@ -1,6 +1,6 @@
 # Affiliate Programme Register
 
-Verified: 2026-09-16. Re-check programme terms before activation because commercial terms can change.
+Verified: 2026-09-27. Re-check programme terms before activation because commercial terms can change.
 
 ## Activation rule
 
@@ -22,7 +22,8 @@ Current state:
 - Associates account created.
 - Production tag configured as a Railway environment variable, never committed to Git.
 - Amazon-specific disclosure is enabled when the environment variable is present.
-- Final live-click verification and owner tax-interview completion remain operational follow-ups.
+- Production `/go/amazon` redirect and the required site disclosure were live-verified on 2026-09-27.
+- Owner tax-interview/account-completion status remains an operational follow-up outside the repository.
 
 Current programme information:
 - Amazon.ie offers an Associates programme for publishers/content creators.
@@ -72,7 +73,7 @@ Activation checklist:
 
 ## Verified physical-product expansion queue
 
-The four programmes below were researched on 2026-09-16 using current official programme/network sources. They are **RESEARCHED / NOT ACTIVE**. No DROPi tracking link should be created or represented as active until the corresponding application is accepted.
+The five programmes below were researched using current official programme/network sources. They are **RESEARCHED / NOT ACTIVE**. No DROPi tracking link should be created or represented as active until the corresponding application is accepted.
 
 ### Decathlon Ireland — Awin
 
@@ -94,6 +95,28 @@ Activation sequence:
 4. Review the account-specific programme terms after approval.
 5. Generate the approved Awin tracking/deep link for Decathlon.ie.
 6. Only then add a production route/configuration and relevant Decathlon CTA options.
+
+### Nisbets Ireland — Awin
+
+Purpose: locally stocked professional insulated delivery bags, food-transport accessories and catering equipment for the food-delivery guide cluster.
+
+Status: **RESEARCHED / NOT APPLIED**.
+
+Official evidence:
+- Nisbets Ireland operates its affiliate programme through Awin: https://www.nisbets.ie/affiliateprogramme
+- The current official page advertises up to 6% commission on confirmed sales.
+- The current attribution window is 10 days.
+- Commission is not paid on tax or delivery charges.
+- A full product data feed is available.
+- Current relevant stock includes the Vogue FS437 insulated delivery backpack and GG141 large insulated delivery bag; product availability and price must be re-checked before publishing a recommendation.
+
+Activation sequence:
+1. Reuse the approved Awin publisher account created for DROPi Delivery.
+2. Apply specifically to the Nisbets Ireland advertiser programme.
+3. Review the exact approved-account terms, prohibited promotion rules and deep-link policy.
+4. Generate approved links only for genuinely relevant professional products.
+5. Add the smallest production route/configuration after approval, with Railway-only identifiers.
+6. Verify Awin click reporting before marking the programme `ACTIVE`.
 
 ### eBay Partner Network — eBay.ie
 
@@ -161,7 +184,7 @@ Activation sequence:
 
 This is an operational sequence, not a ranking of partner quality:
 
-1. **Awin publisher account + Decathlon Ireland** — one network account can later expose additional relevant Ireland/EU merchants.
+1. **Awin publisher account + Nisbets Ireland + Decathlon Ireland** — one network onboarding can cover the strongest current thermal-bag fallback and a broad cycling retailer.
 2. **eBay Partner Network** — broad `ebay.ie` coverage can diversify general product links.
 3. **Webgains + Anker EU** — strong fit for the existing charging cluster, but requires a second network onboarding and site validation.
 4. **Packhelp** — direct fit for the small-ecommerce packaging cluster and can be activated independently through PartnerStack.
