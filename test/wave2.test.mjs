@@ -38,5 +38,5 @@ test('wave 2 article renders related internal links', () => {
 test('expanded sitemap contains every guide and category URL', () => {
   const xml = sitemap();
   for (const article of articles) assert.match(xml, new RegExp(`/guides/${article.slug}`));
-  assert.equal((xml.match(/<url>/g) || []).length, articles.length + 11);
+  assert.equal((xml.match(/<url>/g) || []).length, articles.length + 12);
 });

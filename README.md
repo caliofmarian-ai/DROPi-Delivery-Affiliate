@@ -5,7 +5,8 @@ DROPi Delivery is an inventory-free editorial commerce business for delivery dri
 ## What is already implemented
 
 - Fast Node.js website with no runtime dependencies.
-- 52 original commercial-intent guides covering driver gear, vehicles, bike/e-bike delivery, food delivery and ecommerce shipping.
+- 62 original guides covering driver gear, vehicles, bike/e-bike delivery, food delivery and ecommerce shipping.
+- Dedicated 10-guide e-bike delivery collection covering rack fit, stable cargo, range, extra capacity, battery fundamentals, charging safety, accessories, inventions, maintenance and a complete Ireland-ready setup.
 - SEO essentials: canonical URLs, crawlable category hubs, Open Graph metadata, Article/Breadcrumb/Collection structured data, sitemap with `lastmod`, robots.txt and an Atom feed.
 - Optional Google Search Console and Bing Webmaster Tools verification metadata supplied only through deployment variables.
 - Transparent affiliate disclosure and privacy-first launch configuration.

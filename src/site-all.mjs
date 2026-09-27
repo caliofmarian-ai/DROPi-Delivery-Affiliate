@@ -82,7 +82,7 @@ function card(article) {
 export function homePage() {
   const latest = articles.slice(0, 6).map(card).join('');
   const categoryCards = categories.map((category) => `<a class="category-card" href="${categoryPath(category.slug)}"><span>${esc(category.name)}</span><p>${esc(category.description)}</p></a>`).join('');
-  const body = `<section class="hero"><div class="eyebrow">Delivery work, without the hype</div><h1>Better gear. Better dispatch. Fewer small failures.</h1><p class="hero-copy">Independent guides for delivery drivers, couriers and small online sellers in Ireland and Europe. We compare what matters in real workflows: reliability, weather, power, cargo organisation and shipping software.</p><div class="hero-actions"><a class="button primary" href="/guides">Browse practical guides</a><a class="button secondary" href="/tools">Compare shipping tools</a></div><div class="trust-row"><span>${articles.length} original guides</span><span>Direct sale when verified</span><span>Affiliate fallback disclosed</span></div></section><section class="section"><div class="section-heading"><div><div class="eyebrow">Find the right workflow</div><h2>Built around delivery problems, not product catalogues</h2></div></div><div class="category-grid">${categoryCards}</div></section><section class="section"><div class="section-heading"><div><div class="eyebrow">Latest guides</div><h2>New practical guides for delivery work</h2></div><a href="/guides">View all ${articles.length} guides →</a></div><div class="article-grid">${latest}</div></section><section class="section split"><div><div class="eyebrow">For online sellers</div><h2>Shipping workflow before software hype</h2><p>Our ecommerce coverage now includes small-seller Sendcloud and multi-channel ShipStation reviews, an Ireland-focused decision tree, label and scale guides, and a returns workflow.</p><a class="text-link" href="/guides/shipping-software-decision-tree-ireland">Open the shipping software decision tree →</a></div><div class="panel"><strong>Commerce model</strong><p>DROPi Delivery prefers direct Shopify sales when a real supplier route, Ireland delivery, returns and contribution have been verified. When direct sale is not suitable, disclosed affiliate referrals remain the fallback.</p></div></section>`;
+  const body = `<section class="hero"><div class="eyebrow">Delivery work, without the hype</div><h1>Better gear. Better dispatch. Fewer small failures.</h1><p class="hero-copy">Independent guides for delivery drivers, couriers and small online sellers in Ireland and Europe. We compare what matters in real workflows: reliability, weather, power, cargo organisation and shipping software.</p><div class="hero-actions"><a class="button primary" href="/guides">Browse practical guides</a><a class="button secondary" href="/tools">Compare shipping tools</a></div><div class="trust-row"><span>${articles.length} original guides</span><span>Direct sale when verified</span><span>Affiliate fallback disclosed</span></div></section><section class="section ebike-feature"><div><div class="eyebrow">New 10-guide collection</div><h2>Build an e-bike delivery setup from rack to range</h2><p>Choose a compatible rear rack, stabilise cargo, measure real range, add capacity safely and understand the limits of battery work. The collection is written for Ireland and European delivery conditions.</p><a class="button primary" href="/ebike-delivery">Open the e-bike delivery series</a></div><div class="feature-metric"><span>Start with</span><strong>Fit → Load → Range</strong><p>Improve the system in that order before adding more battery.</p></div></section><section class="section"><div class="section-heading"><div><div class="eyebrow">Find the right workflow</div><h2>Built around delivery problems, not product catalogues</h2></div></div><div class="category-grid">${categoryCards}</div></section><section class="section"><div class="section-heading"><div><div class="eyebrow">Latest guides</div><h2>New practical guides for delivery work</h2></div><a href="/guides">View all ${articles.length} guides →</a></div><div class="article-grid">${latest}</div></section><section class="section split"><div><div class="eyebrow">For online sellers</div><h2>Shipping workflow before software hype</h2><p>Our ecommerce coverage now includes small-seller Sendcloud and multi-channel ShipStation reviews, an Ireland-focused decision tree, label and scale guides, and a returns workflow.</p><a class="text-link" href="/guides/shipping-software-decision-tree-ireland">Open the shipping software decision tree →</a></div><div class="panel"><strong>Commerce model</strong><p>DROPi Delivery prefers direct Shopify sales when a real supplier route, Ireland delivery, returns and contribution have been verified. When direct sale is not suitable, disclosed affiliate referrals remain the fallback.</p></div></section>`;
   const jsonLd = {
     '@context': 'https://schema.org',
     '@graph': [
@@ -103,6 +103,31 @@ export function homePage() {
     ]
   };
   return layout({ title: 'DROPi Delivery — Gear and Shipping Guides for Delivery Work', description: 'Independent delivery-driver gear and ecommerce shipping guides for Ireland and Europe.', body, path: '/', jsonLd });
+}
+
+export function ebikeDeliveryPage() {
+  const series = articles
+    .filter((article) => article.series === 'ebike-delivery')
+    .sort((a, b) => a.seriesOrder - b.seriesOrder);
+  const guideCards = series.map((article) => `<article class="series-card"><div class="series-number">${String(article.seriesOrder).padStart(2, '0')}</div><div><div class="card-meta"><span>${esc(categories.find((item) => item.slug === article.category)?.name || 'Guide')}</span><time datetime="${article.updated}">${article.updated}</time></div><h2><a href="/guides/${esc(article.slug)}">${esc(article.title)}</a></h2><p>${esc(article.description)}</p><a class="text-link" href="/guides/${esc(article.slug)}">Read guide ${article.seriesOrder} →</a></div></article>`).join('');
+  const body = `<section class="series-hero"><div class="series-hero-copy"><div class="eyebrow">DROPi Delivery field collection</div><h1>E-bike delivery, built as one system</h1><p>Ten practical guides covering the rear rack, cargo balance, real-world range, extra capacity, battery design fundamentals, charging safety, accessories, low-risk inventions, maintenance and a complete Ireland-ready setup.</p><div class="hero-actions"><a class="button primary" href="/guides/ebike-rear-rack-delivery-guide">Start with the rear rack</a><a class="button secondary" href="/guides/increase-ebike-range-delivery-work">Calculate practical range</a></div></div><div class="range-model" aria-label="Range planning formula"><span>Range model</span><strong>usable Wh</strong><i>÷</i><strong>Wh per km</strong><b>= planned km</b><small>Keep at least 15–20% reserve for delivery work.</small></div></section><section class="section series-principles"><div><span>01</span><strong>Fit first</strong><p>Measure frame mounts, axle, brake, tyre and load before buying a rack.</p></div><div><span>02</span><strong>Load low</strong><p>Balance dense cargo in panniers and prevent movement in every direction.</p></div><div><span>03</span><strong>Measure range</strong><p>Use real routes and conservative consumption before adding battery mass.</p></div></section><section class="section"><div class="section-heading"><div><div class="eyebrow">Complete learning path</div><h2>Ten guides, in the order the bicycle should be built</h2></div><span class="series-count">${series.length} guides · English</span></div><div class="series-list">${guideCards}</div></section><section class="section safety-band"><div><div class="eyebrow">Battery safety boundary</div><h2>Specification is not assembly</h2></div><p>The battery guide explains voltage, energy, BMS protection, enclosure design and quality gates. It does not replace qualified assembly, validation, conformity work or the exact manufacturer instructions.</p></section>`;
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: 'E-bike Delivery Guide Collection',
+    description: 'Ten practical guides for building a safer and more efficient e-bike delivery setup.',
+    url: `${siteUrl()}/ebike-delivery`,
+    mainEntity: {
+      '@type': 'ItemList',
+      itemListElement: series.map((article) => ({
+        '@type': 'ListItem',
+        position: article.seriesOrder,
+        name: article.title,
+        url: `${siteUrl()}/guides/${article.slug}`
+      }))
+    }
+  };
+  return layout({ title: 'E-bike Delivery Guide Collection — DROPi Delivery', description: 'Ten English guides for e-bike delivery racks, cargo, range, batteries, safety, accessories and maintenance in Ireland and Europe.', path: '/ebike-delivery', body, jsonLd });
 }
 
 export function guidesPage(url) {
@@ -235,7 +260,7 @@ export function sitemap() {
     (latest, article) => article.updated > latest ? article.updated : latest,
     '1970-01-01'
   );
-  const staticPaths = ['/', '/guides', '/tools', '/about', '/affiliate-disclosure', '/privacy'];
+  const staticPaths = ['/', '/guides', '/ebike-delivery', '/tools', '/about', '/affiliate-disclosure', '/privacy'];
   const entries = [
     ...staticPaths.map((path) => ({ path, lastmod: latestUpdated })),
     ...categories.map((category) => ({ path: categoryPath(category.slug), lastmod: latestUpdated })),

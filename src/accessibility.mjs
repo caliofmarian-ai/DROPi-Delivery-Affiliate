@@ -11,6 +11,7 @@ function canonicalPath(html) {
 function markNavigation(html, path) {
   const items = [
     ['/guides', 'Guides'],
+    ['/ebike-delivery', 'E-bike series'],
     ['/tools', 'Shipping tools'],
     ['/about', 'About']
   ];
