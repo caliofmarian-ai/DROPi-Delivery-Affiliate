@@ -50,6 +50,10 @@ const SOURCE = {
   shimano: {
     name: 'Shimano — e-bike battery and parts user manual',
     url: 'https://si.shimano.com/en/pdfs/um/7GP0B/UM-7GP0B-001-ENG.pdf'
+  },
+  fsaiDeliveryBags: {
+    name: 'Food Safety Authority of Ireland — takeaway delivery-bag controls',
+    url: 'https://www.fsai.ie/business-advice/starting-a-food-business/starting-and-running-a-takeaway/common-compliance-issues-and-controls'
   }
 };
 
@@ -68,8 +72,15 @@ export const ebikeDeliveryArticles = [
     slug: 'ebike-rear-rack-delivery-guide',
     title: 'E-bike Rear Rack Guide for Delivery Work: Fit, Load and Brake Clearance',
     description: 'Choose a rear rack from the bicycle outward: identify the mounts, axle, wheel, tyre, brake and real cargo weight before comparing rack brands.',
+    image: {
+      src: '/images/ebike-guides/rear-rack-thermal-bag.webp',
+      width: 1536,
+      height: 1024,
+      alt: 'Step-through electric delivery bicycle with balanced panniers and a thermal food bag secured to the rear rack',
+      caption: 'Illustrative setup: the thermal bag has a rigid, level base while dense equipment stays low in balanced panniers.'
+    },
     intent: 'commercial',
-    productQuery: 'disc brake ebike rear rack 25kg 30kg pannier',
+    productQuery: 'ebike rear rack thermal delivery bag mounting platform 25kg 30kg',
     safetyNotice: 'The usable cargo limit is the lowest published limit in the complete system: bicycle frame, mounts, rack, adapter, panniers, box and straps.',
     sections: [
       {
@@ -100,6 +111,20 @@ export const ebikeDeliveryArticles = [
         ]
       },
       {
+        heading: 'Design the rack around the thermal delivery bag',
+        paragraphs: [
+          'For food delivery, the thermal bag is part of the load-bearing system, not an afterthought. Measure the loaded bag base, then choose a rack platform or rated adapter plate that supports that footprint without overhang, rocking or concentrated pressure points.',
+          'The Food Safety Authority of Ireland says food-delivery bags must be clean, suitable, in good condition, easy to clean and disinfect, and capable of keeping food at the appropriate temperature. A secure bicycle mount must preserve those functions rather than crushing the insulation or preventing the lid from closing.'
+        ],
+        bullets: [
+          'Use a rigid, flat and washable base between the rack and soft thermal bag where the bag maker permits it.',
+          'Secure the bag in at least four directions using rated buckles, a compatible mounting plate or the bag maker’s approved attachment points.',
+          'Capture every strap end so it cannot reach the tyre, spokes, rotor or chain.',
+          'Use removable upright dividers for drinks and separate hot and cold orders when the food-business procedure requires it.',
+          'Keep the rear light and reflector visible and retain access to the battery lock and rack fasteners.'
+        ]
+      },
+      {
         heading: 'Read product ratings in context',
         paragraphs: [
           'Current manufacturer examples show why the mounting method matters. Trek publishes a 25 kg rating for the BackRack MIK; ORTLIEB publishes 26 kg for the Quick-Rack XL family and 30 kg for Rack Three under its specified fit conditions; Thule publishes an 11 kg rear load for Tour Rack. These numbers describe the rack, not automatic compatibility with every bicycle.',
@@ -121,16 +146,23 @@ export const ebikeDeliveryArticles = [
         ]
       }
     ],
-    sources: [SOURCE.trekRack, SOURCE.ortliebQuick, SOURCE.ortliebThree, SOURCE.thule]
+    sources: [SOURCE.trekRack, SOURCE.ortliebQuick, SOURCE.ortliebThree, SOURCE.thule, SOURCE.fsaiDeliveryBags]
   },
   {
     ...common,
     seriesOrder: 2,
     slug: 'stable-ebike-cargo-system-delivery',
-    title: 'Build a Stable E-bike Cargo System: Panniers, Top Boxes and Load Balance',
-    description: 'Turn a rated rear rack into a stable delivery platform by placing dense weight low, balancing both sides and preventing movement in every direction.',
+    title: 'Build a Stable E-bike Cargo System: Thermal Bags, Panniers and Load Balance',
+    description: 'Mount a thermal delivery bag on a stable platform, place dense weight low, balance both sides and prevent food, drinks and equipment moving in any direction.',
+    image: {
+      src: '/images/ebike-guides/stable-cargo-thermal-bag.webp',
+      width: 1672,
+      height: 941,
+      alt: 'Electric delivery bicycle with a large insulated food bag on the rear platform and balanced side panniers',
+      caption: 'Illustrative cargo system: the thermal bag is supported on top while denser tools and equipment are carried lower.'
+    },
     intent: 'commercial',
-    productQuery: 'waterproof bicycle panniers cargo crate mounting plate reflective',
+    productQuery: 'insulated food delivery bag bicycle rack rigid base dividers panniers',
     safetyNotice: 'A strong rack cannot correct a high, loose or one-sided load. Test handling and braking progressively before entering traffic.',
     sections: [
       {
@@ -153,7 +185,7 @@ export const ebikeDeliveryArticles = [
       {
         heading: 'Match the layout to the work',
         paragraphs: [
-          'Documents and compact parcels work well in two slim panniers because the load stays low and access remains quick. Food delivery often needs an insulated top box, but liquids still need upright dividers and reliable restaurant packaging. A mixed shift benefits from two panniers plus a modular top crate that can be removed or reconfigured.',
+          'Documents and compact parcels work well in two slim panniers because the load stays low and access remains quick. Food delivery needs a clean, suitable thermal bag that can maintain the appropriate temperature, while liquids still need upright dividers and reliable restaurant packaging. A mixed shift benefits from two panniers plus a modular thermal bag that can be removed for cleaning or reconfigured.',
           'Keep repair tools in a separate pouch so sharp or dirty items cannot damage food, clothing or electronics. Use a cleanable liner and make drainage paths avoid the battery, controller and connectors.'
         ]
       },
@@ -175,7 +207,7 @@ export const ebikeDeliveryArticles = [
         ]
       }
     ],
-    sources: [SOURCE.ortliebQuick, SOURCE.ortliebThree, SOURCE.thule]
+    sources: [SOURCE.ortliebQuick, SOURCE.ortliebThree, SOURCE.thule, SOURCE.fsaiDeliveryBags]
   },
   {
     ...common,
@@ -183,6 +215,13 @@ export const ebikeDeliveryArticles = [
     slug: 'increase-ebike-range-delivery-work',
     title: 'How to Increase E-bike Range for Delivery Work: Measure Before You Upgrade',
     description: 'Build a realistic range model from usable watt-hours and measured consumption, then improve tyres, drag, cadence, speed, route and cargo in the right order.',
+    image: {
+      src: '/images/ebike-guides/range-planning-thermal-bag.webp',
+      width: 1774,
+      height: 887,
+      alt: 'Electric delivery bicycle with a thermal food bag, balanced panniers and navigation phone overlooking a hilly city route',
+      caption: 'Illustrative range setup: model the real bicycle, thermal bag, cargo, hills and weather rather than relying on a brochure maximum.'
+    },
     intent: 'commercial',
     productQuery: 'bicycle tyre pressure gauge chain checker ebike maintenance',
     safetyNotice: 'Plan every shift with a reserve. Advertised range is not a promise for cargo, cold weather, hills, wind or repeated starts.',
@@ -252,6 +291,13 @@ export const ebikeDeliveryArticles = [
     slug: 'add-ebike-battery-capacity-safely',
     title: 'How to Add E-bike Battery Capacity Safely: Larger Packs, Spares and Dual Systems',
     description: 'Compare approved larger batteries, supported dual-battery systems and manual swaps without using improvised parallel leads or incompatible chargers.',
+    image: {
+      src: '/images/ebike-guides/safe-battery-capacity.webp',
+      width: 1672,
+      height: 941,
+      alt: 'Electric bicycle beside matched removable batteries, charger and purpose-built range extender on a workshop bench',
+      caption: 'Illustrative compatibility review: battery, charger, communication, connector and mount must belong to a supported system.'
+    },
     intent: 'informational',
     productQuery: null,
     commercialCta: 'none',
@@ -310,6 +356,13 @@ export const ebikeDeliveryArticles = [
     slug: 'ebike-battery-design-from-zero-safety',
     title: 'E-bike Battery Design from Zero: Cells, BMS, Enclosure and Quality Gates',
     description: 'Understand pack voltage, energy, cells, interconnects, BMS protection, enclosure design and validation without treating a high-energy battery as a casual DIY project.',
+    image: {
+      src: '/images/ebike-guides/battery-design-lab.webp',
+      width: 1672,
+      height: 941,
+      alt: 'Battery engineer reviewing a closed e-bike pack and design components in a professional laboratory',
+      caption: 'Illustrative professional design review—not a live-pack assembly instruction.'
+    },
     intent: 'informational',
     productQuery: null,
     commercialCta: 'none',
@@ -390,6 +443,13 @@ export const ebikeDeliveryArticles = [
     slug: 'ebike-battery-charging-storage-fire-safety',
     title: 'E-bike Battery Charging and Storage Safety for Home and Delivery Work',
     description: 'Use the correct charger, keep escape routes clear, stay present and act immediately on swelling, unusual heat, damage, smell, hissing or smoke.',
+    image: {
+      src: '/images/ebike-guides/charging-storage-safety.webp',
+      width: 1536,
+      height: 1024,
+      alt: 'Removable e-bike battery charging on a clear metal bench with its matched charger and an unobstructed exit',
+      caption: 'Illustrative charging layout. Always follow the exact battery and charger instructions and keep escape routes clear.'
+    },
     intent: 'informational',
     productQuery: null,
     commercialCta: 'none',
@@ -460,8 +520,15 @@ export const ebikeDeliveryArticles = [
     slug: 'ebike-delivery-accessories-priority-checklist',
     title: 'E-bike Delivery Accessories Checklist: Buy Safety and Reliability First',
     description: 'Prioritise visibility, stable cargo, theft protection, roadside recovery, weather and navigation before comfort gadgets and optional electronics.',
+    image: {
+      src: '/images/ebike-guides/delivery-accessories-thermal-bag.webp',
+      width: 1536,
+      height: 1024,
+      alt: 'Thermal food-delivery bag surrounded by helmet, lights, high-visibility vest, locks, rainwear and repair tools',
+      caption: 'Illustrative priority kit: the thermal bag is core delivery equipment alongside visibility, security and roadside recovery.'
+    },
     intent: 'commercial',
-    productQuery: 'bike courier accessories lights mirror lock repair kit waterproof',
+    productQuery: 'insulated food delivery bag bike courier lights lock repair kit waterproof',
     safetyNotice: 'Every accessory must preserve brake access, steering, cable movement, lights, battery cooling and a safe dismount path.',
     sections: [
       {
@@ -474,6 +541,7 @@ export const ebikeDeliveryArticles = [
       {
         heading: 'First-priority equipment',
         bullets: [
+          'A clean, suitable thermal delivery bag with a rigid base, closed lid, washable interior and dividers appropriate to the orders carried.',
           'A suitable helmet, high-visibility layer, compliant front and rear lights, bell and a well-positioned mirror.',
           'A rated rack, positively retained panniers, safe straps, waterproof covers and mudguards.',
           'Two appropriate locks for layered security plus a concealed tracker if desired.',
@@ -511,7 +579,7 @@ export const ebikeDeliveryArticles = [
         ]
       }
     ],
-    sources: [SOURCE.rsa, SOURCE.schwalbe, SOURCE.cpscChargers]
+    sources: [SOURCE.rsa, SOURCE.schwalbe, SOURCE.cpscChargers, SOURCE.fsaiDeliveryBags]
   },
   {
     ...common,
@@ -519,6 +587,13 @@ export const ebikeDeliveryArticles = [
     slug: 'ebike-delivery-gadgets-diy-inventions',
     title: 'Useful E-bike Delivery Gadgets and DIY Inventions That Stay Low Risk',
     description: 'Build modular cargo, range logging, drying, repair and visibility systems without modifying the high-current battery circuit or weakening the frame.',
+    image: {
+      src: '/images/ebike-guides/modular-cargo-inventions.webp',
+      width: 1536,
+      height: 1024,
+      alt: 'Open insulated delivery bag with drink dividers secured to a modular rear platform on an electric bicycle',
+      caption: 'Illustrative modular platform: reversible dividers and a supported thermal bag improve workflow without altering the frame or battery circuit.'
+    },
     intent: 'commercial',
     productQuery: 'bike cargo crate quick release plate dividers reflective tape scale',
     safetyNotice: 'Keep inventions modular, reversible and inspectable. Battery combiners, high-current converters, frame drilling and brake-system changes belong with qualified professionals.',
@@ -581,6 +656,13 @@ export const ebikeDeliveryArticles = [
     slug: 'ebike-delivery-maintenance-schedule',
     title: 'E-bike Delivery Maintenance Schedule: Daily, Wet-Shift, Weekly and Monthly Checks',
     description: 'Use a five-minute pre-shift inspection and a simple service log to catch brake, tyre, rack, drivetrain and electrical problems before they stop a route.',
+    image: {
+      src: '/images/ebike-guides/delivery-maintenance.webp',
+      width: 1672,
+      height: 941,
+      alt: 'Bicycle mechanic inspecting the rear brake of an electric delivery bicycle with the thermal bag stored nearby',
+      caption: 'Illustrative service setting: remove cargo for access, then inspect brakes, tyres, drivetrain, rack mounts and lights.'
+    },
     intent: 'commercial',
     productQuery: 'bike maintenance toolkit torque wrench chain checker tyre gauge',
     safetyNotice: 'Delivery loads and wet stop-start riding accelerate wear. Follow the bicycle, brake, motor and battery manufacturer intervals whenever they are stricter.',
@@ -644,15 +726,22 @@ export const ebikeDeliveryArticles = [
     slug: 'complete-ebike-delivery-setup-ireland',
     title: 'Complete E-bike Delivery Setup for Ireland: A Safe Purchase and Test Sequence',
     description: 'Build a delivery bicycle in the right order: confirm its legal category and condition, fit stable cargo, test handling, measure range and then add only the upgrades the route requires.',
+    image: {
+      src: '/images/ebike-guides/complete-ireland-setup.webp',
+      width: 1672,
+      height: 941,
+      alt: 'High-visibility courier beside a fully equipped electric delivery bicycle with a thermal food bag on a wet Dublin street',
+      caption: 'Illustrative complete setup: thermal bag, stable rack, low panniers, lights, weather protection and visible safety equipment.'
+    },
     intent: 'commercial',
-    productQuery: 'electric bike delivery rack panniers lights locks repair kit',
+    productQuery: 'electric bike insulated delivery bag rear rack panniers lights locks',
     safetyNotice: 'Do not buy the complete setup at once. Build a safe base, test it under real work and upgrade the limitation you can measure.',
     sections: [
       {
         heading: 'Choose the setup class',
         bullets: [
-          'Lean city setup: rated rack, two waterproof panniers, lights, mirror, phone mount, two locks, repair kit and rainwear.',
-          'Serious daily setup: 25–30 kg rack where approved, low panniers, modular top box, compatible stand and a protected spare-battery module.',
+          'Lean city setup: rated rack, securely mounted thermal delivery bag, lights, mirror, phone mount, two locks, repair kit and rainwear.',
+          'Serious daily setup: 25–30 kg rack where approved, rigid thermal-bag base, drink dividers, low panniers, compatible stand and a protected spare-battery module.',
           'Long-range setup: measured energy plan, approved spare batteries, planned charging, low-drag cargo, weather kit and a detailed maintenance log.',
           'Heavy-cargo setup: cargo bike or rated trailer, commercial box, suitable brakes and stable loading support.'
         ]
@@ -680,6 +769,7 @@ export const ebikeDeliveryArticles = [
         heading: 'Run a loaded acceptance test',
         bullets: [
           'The rack, box and panniers remain inside the weakest published load limit.',
+          'The thermal bag is clean, closes fully, stays level and can be removed for cleaning and disinfection.',
           'Heavy items sit low and left/right balance is acceptable.',
           'No mount, strap, cable or cargo can contact the tyre, spokes, rotor or chain.',
           'Both brakes stop the bicycle predictably with the planned working load.',
@@ -707,6 +797,6 @@ export const ebikeDeliveryArticles = [
         ]
       }
     ],
-    sources: [SOURCE.rsa, SOURCE.dfb, SOURCE.opss, SOURCE.euBattery]
+    sources: [SOURCE.rsa, SOURCE.dfb, SOURCE.opss, SOURCE.euBattery, SOURCE.fsaiDeliveryBags]
   }
 ];

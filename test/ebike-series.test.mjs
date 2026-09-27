@@ -1,5 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import { access } from 'node:fs/promises';
 import { articles, ebikeDeliveryArticles, getArticle } from '../src/content-all.mjs';
 import { articlePage, ebikeDeliveryPage, homePage, sitemap } from '../src/site-all.mjs';
 
@@ -16,9 +17,22 @@ test('e-bike delivery collection publishes ten ordered English guides', () => {
     assert.ok(article.description.length > 90);
     assert.ok(article.sections.length >= 5);
     assert.ok(article.sources.length >= 2);
+    assert.match(article.image.src, /^\/images\/ebike-guides\/[a-z0-9-]+\.webp$/);
+    assert.ok(article.image.width >= 1536);
+    assert.ok(article.image.height >= 887);
+    assert.ok(article.image.alt.length > 40);
+    assert.ok(article.image.caption.length > 40);
     assert.equal(getArticle(article.slug), article);
   }
+  assert.equal(new Set(ebikeDeliveryArticles.map((article) => article.image.src)).size, 10);
   assert.equal(articles.length, 62);
+});
+
+test('every e-bike guide image is committed as a local web asset', async () => {
+  await Promise.all(ebikeDeliveryArticles.map((article) => {
+    const asset = new URL(`../public${article.image.src}`, import.meta.url);
+    return access(asset);
+  }));
 });
 
 test('collection hub exposes the full learning path and range model', () => {
@@ -30,6 +44,8 @@ test('collection hub exposes the full learning path and range model', () => {
   assert.match(html, /ebike-rear-rack-delivery-guide/);
   assert.match(html, /complete-ebike-delivery-setup-ireland/);
   assert.equal((html.match(/class="series-card"/g) || []).length, 10);
+  assert.equal((html.match(/class="series-card-image"/g) || []).length, 10);
+  assert.match(html, /thermal delivery bag/i);
   assert.match(html, /"@type":"CollectionPage"/);
   assert.match(html, /"@type":"ItemList"/);
 });
@@ -42,6 +58,11 @@ test('commercial rack guide shows series navigation, safety boundary, sources an
   assert.match(html, /Check Amazon\.ie options/);
   assert.match(html, /nofollow sponsored/);
   assert.match(html, /View the complete series/);
+  assert.match(html, /class="article-hero"/);
+  assert.match(html, /rear-rack-thermal-bag\.webp/);
+  assert.match(html, /AI-generated editorial image/);
+  assert.match(html, /Design the rack around the thermal delivery bag/);
+  assert.match(html, /Food Safety Authority of Ireland/);
 });
 
 test('battery design and charging guides stay informational rather than monetised', () => {
