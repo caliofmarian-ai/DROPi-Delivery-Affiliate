@@ -18,7 +18,7 @@ const port = Number(process.env.PORT || 3000);
 const cssUrl = new URL('./public/styles.css', import.meta.url);
 const imageAssets = new Map(
   articles
-    .filter((article) => article.image?.src?.startsWith('/images/ebike-guides/'))
+    .filter((article) => article.image?.src?.startsWith('/images/'))
     .map((article) => [article.image.src, new URL(`./public${article.image.src}`, import.meta.url)])
 );
 
