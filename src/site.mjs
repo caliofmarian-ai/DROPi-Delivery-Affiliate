@@ -16,9 +16,10 @@ function footer() {
   return `<footer class="site-footer"><div><strong>DROPi Delivery</strong><p>Independent buying guides and practical delivery-work resources for Ireland and Europe.</p></div><div class="footer-links"><a href="/affiliate-disclosure">Affiliate disclosure</a><a href="/privacy">Privacy</a><a href="/about">About</a></div><p class="legal-note">DROPi Delivery is an independent publisher. Brand names belong to their respective owners. Product availability, pricing and partner terms can change.</p></footer>`;
 }
 
-export function layout({ title, description, path = '/', body, jsonLd = null }) {
+export function layout({ title, description, path = '/', body, jsonLd = null, image = null }) {
   const canonical = `${siteUrl()}${path}`;
-  return `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${esc(title)}</title><meta name="description" content="${esc(description)}"><link rel="canonical" href="${esc(canonical)}"><meta property="og:title" content="${esc(title)}"><meta property="og:description" content="${esc(description)}"><meta property="og:type" content="website"><meta property="og:url" content="${esc(canonical)}"><link rel="stylesheet" href="/styles.css">${jsonLd ? `<script type="application/ld+json">${JSON.stringify(jsonLd).replaceAll('<','\\u003c')}</script>` : ''}</head><body>${nav()}<main>${body}</main>${footer()}</body></html>`;
+  const imageMeta = image ? `<meta property="og:image" content="${esc(image)}"><meta name="twitter:image" content="${esc(image)}">` : '';
+  return `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${esc(title)}</title><meta name="description" content="${esc(description)}"><link rel="canonical" href="${esc(canonical)}"><meta property="og:title" content="${esc(title)}"><meta property="og:description" content="${esc(description)}"><meta property="og:type" content="website"><meta property="og:url" content="${esc(canonical)}">${imageMeta}<link rel="stylesheet" href="/styles.css">${jsonLd ? `<script type="application/ld+json">${JSON.stringify(jsonLd).replaceAll('<','\\u003c')}</script>` : ''}</head><body>${nav()}<main>${body}</main>${footer()}</body></html>`;
 }
 
 function affiliateNotice() {
@@ -73,9 +74,13 @@ export function articlePage(article) {
       }).join('')}</ul></section>`
     : '';
   const disclosure = article.commercialCta === 'none' ? '' : affiliateNotice();
-  const body = `<article class="article"><header class="article-header">${series}<a class="eyebrow" href="/guides?category=${esc(article.category)}">${esc(category)}</a><h1>${esc(article.title)}</h1><p class="dek">${esc(article.description)}</p><div class="byline">Published ${article.published} · Updated ${article.updated} · DROPi Delivery Editorial</div></header>${disclosure}${warning}${sections}${buy}${sources}<aside class="method"><strong>How we write buying guides</strong><p>We prioritise use case, specifications, maintainability and failure modes. Unless a page explicitly says otherwise, a product mention is not a claim of hands-on testing.</p></aside></article>`;
-  const jsonLd = { '@context':'https://schema.org','@type':'Article','headline':article.title,'description':article.description,'datePublished':article.published,'dateModified':article.updated,'author':{'@type':'Organization','name':'DROPi Delivery Editorial'},'publisher':{'@type':'Organization','name':'DROPi Delivery'},'mainEntityOfPage':`${siteUrl()}/guides/${article.slug}` };
-  return layout({ title: `${article.title} — DROPi Delivery`, description: article.description, path: `/guides/${article.slug}`, body, jsonLd });
+  const heroImage = article.image
+    ? `<figure class="article-hero"><img src="${esc(article.image.src)}" alt="${esc(article.image.alt)}" width="${esc(article.image.width)}" height="${esc(article.image.height)}" decoding="async" fetchpriority="high"><figcaption>${esc(article.image.caption)} <span>AI-generated editorial image.</span></figcaption></figure>`
+    : '';
+  const body = `<article class="article"><header class="article-header">${series}<a class="eyebrow" href="/guides?category=${esc(article.category)}">${esc(category)}</a><h1>${esc(article.title)}</h1><p class="dek">${esc(article.description)}</p><div class="byline">Published ${article.published} · Updated ${article.updated} · DROPi Delivery Editorial</div></header>${heroImage}${disclosure}${warning}${sections}${buy}${sources}<aside class="method"><strong>How we write buying guides</strong><p>We prioritise use case, specifications, maintainability and failure modes. Unless a page explicitly says otherwise, a product mention is not a claim of hands-on testing.</p></aside></article>`;
+  const image = article.image ? `${siteUrl()}${article.image.src}` : null;
+  const jsonLd = { '@context':'https://schema.org','@type':'Article','headline':article.title,'description':article.description,'datePublished':article.published,'dateModified':article.updated,'author':{'@type':'Organization','name':'DROPi Delivery Editorial'},'publisher':{'@type':'Organization','name':'DROPi Delivery'},'mainEntityOfPage':`${siteUrl()}/guides/${article.slug}`,...(image ? { image } : {}) };
+  return layout({ title: `${article.title} — DROPi Delivery`, description: article.description, path: `/guides/${article.slug}`, body, jsonLd, image });
 }
 
 export function toolsPage() {

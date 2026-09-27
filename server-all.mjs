@@ -16,6 +16,11 @@ import { augmentLegalSitemap, enhancePrivacyNotice, legalPageDefinition } from '
 
 const port = Number(process.env.PORT || 3000);
 const cssUrl = new URL('./public/styles.css', import.meta.url);
+const imageAssets = new Map(
+  articles
+    .filter((article) => article.image?.src?.startsWith('/images/ebike-guides/'))
+    .map((article) => [article.image.src, new URL(`./public${article.image.src}`, import.meta.url)])
+);
 
 function send(res, status, body, type = 'text/html; charset=utf-8', extra = {}) {
   const output = type.startsWith('text/html')
@@ -36,6 +41,9 @@ const server = http.createServer(async (req, res) => {
     if (req.method !== 'GET' && req.method !== 'HEAD') return send(res, 405, 'Method Not Allowed', 'text/plain; charset=utf-8', { allow: 'GET, HEAD' });
     if (url.pathname === '/health') return send(res, 200, JSON.stringify({ ok: true, guides: articles.length }), 'application/json; charset=utf-8', { 'cache-control': 'no-store', 'x-robots-tag': 'noindex' });
     if (url.pathname === '/styles.css') return send(res, 200, await readFile(cssUrl, 'utf8'), 'text/css; charset=utf-8');
+    if (imageAssets.has(url.pathname)) {
+      return send(res, 200, await readFile(imageAssets.get(url.pathname)), 'image/webp', { 'cache-control': 'public, max-age=31536000, immutable' });
+    }
     if (url.pathname === '/robots.txt') return send(res, 200, robotsTxt(), 'text/plain; charset=utf-8');
     if (url.pathname === '/sitemap.xml') {
       const publisherReady = augmentPublisherSitemap(sitemap(), siteUrl());
