@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { articles, categories, wave3Articles, getArticle } from '../src/content-all.mjs';
+import { articles, categories, ebikeDeliveryArticles, wave3Articles, getArticle } from '../src/content-all.mjs';
 import { articlePage, atomFeed, homePage } from '../src/site-all.mjs';
 
 test('wave 3 publishes exactly twenty new commercial-intent guides', () => {
@@ -23,10 +23,10 @@ test('wave 3 adds four guides to every editorial category', () => {
   }
 });
 
-test('combined library now exposes 52 unique guides', () => {
-  assert.equal(articles.length, 52);
-  assert.equal(new Set(articles.map((article) => article.slug)).size, 52);
-  assert.match(homePage(), /52 original guides/);
+test('combined library now exposes 62 unique guides', () => {
+  assert.equal(articles.length, 62);
+  assert.equal(new Set(articles.map((article) => article.slug)).size, 62);
+  assert.match(homePage(), /62 original guides/);
 });
 
 test('wave 3 article renders disclosure, CTA and related links', () => {
@@ -38,10 +38,10 @@ test('wave 3 article renders disclosure, CTA and related links', () => {
   assert.match(html, /Affiliate disclosure/);
 });
 
-test('Atom feed contains the twenty newest wave 3 guides', () => {
+test('Atom feed contains the new e-bike collection in its twenty newest entries', () => {
   const xml = atomFeed();
   assert.equal((xml.match(/<entry>/g) || []).length, 20);
-  for (const article of wave3Articles) {
+  for (const article of ebikeDeliveryArticles) {
     assert.match(xml, new RegExp(`/guides/${article.slug}`));
   }
 });

@@ -39,5 +39,5 @@ test('robots policy keeps affiliate redirects and health endpoint out of crawlin
 test('sitemap contains category hubs and lastmod metadata for every URL', () => {
   const xml = sitemap();
   for (const category of categories) assert.match(xml, new RegExp(`/guides/category/${category.slug}`));
-  assert.equal((xml.match(/<lastmod>/g) || []).length, articles.length + categories.length + 6);
+  assert.equal((xml.match(/<lastmod>/g) || []).length, articles.length + categories.length + 7);
 });

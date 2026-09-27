@@ -9,7 +9,7 @@ export function siteUrl() {
 }
 
 function nav() {
-  return `<header class="site-header"><a class="brand" href="/"><span class="brand-mark">D</span><span>DROPi Delivery</span></a><nav aria-label="Primary"><a href="/guides">Guides</a><a href="/tools">Shipping tools</a><a href="/about">About</a></nav></header>`;
+  return `<header class="site-header"><a class="brand" href="/"><span class="brand-mark">D</span><span>DROPi Delivery</span></a><nav aria-label="Primary"><a href="/guides">Guides</a><a href="/ebike-delivery">E-bike series</a><a href="/tools">Shipping tools</a><a href="/about">About</a></nav></header>`;
 }
 
 function footer() {
@@ -48,9 +48,32 @@ function card(a) {
 
 export function articlePage(article) {
   const category = categories.find(c => c.slug === article.category)?.name || 'Guide';
-  const sections = article.sections.map(s => `<section class="article-section"><h2>${esc(s.heading)}</h2>${(s.paragraphs||[]).map(p=>`<p>${esc(p)}</p>`).join('')}${s.bullets ? `<ul>${s.bullets.map(b=>`<li>${esc(b)}</li>`).join('')}</ul>`:''}</section>`).join('');
-  const buy = article.productQuery ? `<section class="commercial-box"><div><div class="eyebrow">Compare current options</div><h2>Shop by the specifications in this guide</h2><p>We do not publish fake “tested” claims. Use the checklist above to compare current products and verify specifications on the retailer page.</p></div><a class="button primary" rel="nofollow sponsored" href="/go/amazon?query=${encodeURIComponent(article.productQuery)}&from=${encodeURIComponent(article.slug)}">Check Amazon.ie options</a></section>` : `<section class="commercial-box"><div><div class="eyebrow">Software comparison</div><h2>Try the workflow before committing</h2><p>Partner terms and plans can change. Verify current features and pricing on the provider website.</p></div><div class="stack"><a class="button primary" rel="nofollow sponsored" href="/go/sendcloud?from=${encodeURIComponent(article.slug)}">Visit Sendcloud</a><a class="button secondary" rel="nofollow sponsored" href="/go/shipstation?from=${encodeURIComponent(article.slug)}">Visit ShipStation</a></div></section>`;
-  const body = `<article class="article"><header class="article-header"><a class="eyebrow" href="/guides?category=${esc(article.category)}">${esc(category)}</a><h1>${esc(article.title)}</h1><p class="dek">${esc(article.description)}</p><div class="byline">Published ${article.published} · Updated ${article.updated} · DROPi Delivery Editorial</div></header>${affiliateNotice()}${sections}${buy}<aside class="method"><strong>How we write buying guides</strong><p>We prioritise use case, specifications, maintainability and failure modes. Unless a page explicitly says otherwise, a product mention is not a claim of hands-on testing.</p></aside></article>`;
+  const sections = article.sections.map(s => {
+    const formula = s.formula ? `<div class="formula-card"><span>Working formula</span><strong>${esc(s.formula)}</strong></div>` : '';
+    const paragraphs = (s.paragraphs || []).map(p => `<p>${esc(p)}</p>`).join('');
+    const bullets = s.bullets ? `<ul>${s.bullets.map(b => `<li>${esc(b)}</li>`).join('')}</ul>` : '';
+    const numbered = s.numbered ? `<ol>${s.numbered.map(item => `<li>${esc(item)}</li>`).join('')}</ol>` : '';
+    return `<section class="article-section"><h2>${esc(s.heading)}</h2>${formula}${paragraphs}${bullets}${numbered}</section>`;
+  }).join('');
+  const buy = article.commercialCta === 'none'
+    ? ''
+    : article.productQuery
+      ? `<section class="commercial-box"><div><div class="eyebrow">Compare current options</div><h2>Shop by the specifications in this guide</h2><p>We do not publish fake “tested” claims. Use the checklist above to compare current products and verify specifications on the retailer page.</p></div><a class="button primary" rel="nofollow sponsored" href="/go/amazon?query=${encodeURIComponent(article.productQuery)}&from=${encodeURIComponent(article.slug)}">Check Amazon.ie options</a></section>`
+      : `<section class="commercial-box"><div><div class="eyebrow">Software comparison</div><h2>Try the workflow before committing</h2><p>Partner terms and plans can change. Verify current features and pricing on the provider website.</p></div><div class="stack"><a class="button primary" rel="nofollow sponsored" href="/go/sendcloud?from=${encodeURIComponent(article.slug)}">Visit Sendcloud</a><a class="button secondary" rel="nofollow sponsored" href="/go/shipstation?from=${encodeURIComponent(article.slug)}">Visit ShipStation</a></div></section>`;
+  const series = article.series === 'ebike-delivery'
+    ? `<nav class="series-progress" aria-label="E-bike delivery guide series"><span>Guide ${esc(article.seriesOrder)} of 10</span><a href="/ebike-delivery">View the complete series →</a></nav>`
+    : '';
+  const warning = article.safetyNotice
+    ? `<aside class="safety-note"><strong>Safety boundary</strong><p>${esc(article.safetyNotice)}</p></aside>`
+    : '';
+  const sources = article.sources?.length
+    ? `<section class="article-section source-section"><h2>Official references</h2>${article.sourceChecked ? `<p class="source-date">Sources checked ${esc(article.sourceChecked)}. Specifications and rules can change; verify current instructions before buying or modifying equipment.</p>` : ''}<ul class="source-list">${article.sources.map(source => {
+        const entry = typeof source === 'string' ? { name: source, url: source } : source;
+        return `<li><a href="${esc(entry.url)}">${esc(entry.name)}</a></li>`;
+      }).join('')}</ul></section>`
+    : '';
+  const disclosure = article.commercialCta === 'none' ? '' : affiliateNotice();
+  const body = `<article class="article"><header class="article-header">${series}<a class="eyebrow" href="/guides?category=${esc(article.category)}">${esc(category)}</a><h1>${esc(article.title)}</h1><p class="dek">${esc(article.description)}</p><div class="byline">Published ${article.published} · Updated ${article.updated} · DROPi Delivery Editorial</div></header>${disclosure}${warning}${sections}${buy}${sources}<aside class="method"><strong>How we write buying guides</strong><p>We prioritise use case, specifications, maintainability and failure modes. Unless a page explicitly says otherwise, a product mention is not a claim of hands-on testing.</p></aside></article>`;
   const jsonLd = { '@context':'https://schema.org','@type':'Article','headline':article.title,'description':article.description,'datePublished':article.published,'dateModified':article.updated,'author':{'@type':'Organization','name':'DROPi Delivery Editorial'},'publisher':{'@type':'Organization','name':'DROPi Delivery'},'mainEntityOfPage':`${siteUrl()}/guides/${article.slug}` };
   return layout({ title: `${article.title} — DROPi Delivery`, description: article.description, path: `/guides/${article.slug}`, body, jsonLd });
 }

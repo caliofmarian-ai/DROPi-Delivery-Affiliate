@@ -9,8 +9,9 @@ import { wave3Articles02 } from './content-wave3-02.mjs';
 import { wave3Articles03 } from './content-wave3-03.mjs';
 import { wave3Articles04 } from './content-wave3-04.mjs';
 import { wave3Articles05 } from './content-wave3-05.mjs';
+import { ebikeDeliveryArticles } from './content-wave4-ebike.mjs';
 
-export { categories, partnerPrograms };
+export { categories, partnerPrograms, ebikeDeliveryArticles };
 
 export const wave2Articles = [
   ...wave2Articles01,
@@ -29,7 +30,7 @@ export const wave3Articles = [
 ];
 
 // New content appears first on listing pages while all earlier guides remain available.
-export const articles = [...wave3Articles, ...wave2Articles, ...launchArticles];
+export const articles = [...ebikeDeliveryArticles, ...wave3Articles, ...wave2Articles, ...launchArticles];
 
 export function getArticle(slug) {
   return articles.find((article) => article.slug === slug);

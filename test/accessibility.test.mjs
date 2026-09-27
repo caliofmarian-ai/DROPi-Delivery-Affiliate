@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import { articles } from '../src/content-all.mjs';
-import { homePage, guidesPage, articlePage } from '../src/site-all.mjs';
+import { homePage, guidesPage, ebikeDeliveryPage, articlePage } from '../src/site-all.mjs';
 import { enhanceHtmlAccessibility } from '../src/accessibility.mjs';
 
 test('global HTML gets a skip target and an accessible home brand', () => {
@@ -19,6 +19,9 @@ test('primary navigation reports the current page or guide section', () => {
 
   const article = enhanceHtmlAccessibility(articlePage(articles[0]));
   assert.match(article, /href="\/guides" aria-current="location">Guides<\/a>/);
+
+  const ebikeSeries = enhanceHtmlAccessibility(ebikeDeliveryPage());
+  assert.match(ebikeSeries, /href="\/ebike-delivery" aria-current="page">E-bike series<\/a>/);
 });
 
 test('active category filters and affiliate notices expose semantics', () => {

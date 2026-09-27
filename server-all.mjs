@@ -1,7 +1,7 @@
 import http from 'node:http';
 import { readFile } from 'node:fs/promises';
 import { articles, categories, getArticle } from './src/content-all.mjs';
-import { homePage, guidesPage, articlePage, toolsPage, aboutPage, disclosurePage, privacyPage, outboundUrl, sitemap, robotsTxt, atomFeed, siteUrl, layout, categoryPath } from './src/site-all.mjs';
+import { homePage, guidesPage, ebikeDeliveryPage, articlePage, toolsPage, aboutPage, disclosurePage, privacyPage, outboundUrl, sitemap, robotsTxt, atomFeed, siteUrl, layout, categoryPath } from './src/site-all.mjs';
 import { articleViewEvent, outboundClickEvent, telemetryLine } from './src/telemetry.mjs';
 import { securityHeaders } from './src/http-policy.mjs';
 import { enhanceHtmlAccessibility } from './src/accessibility.mjs';
@@ -59,6 +59,7 @@ const server = http.createServer(async (req, res) => {
     }
 
     if (url.pathname === '/tools') return send(res, 200, toolsPage());
+    if (url.pathname === '/ebike-delivery') return send(res, 200, ebikeDeliveryPage());
     if (url.pathname === '/about') return send(res, 200, aboutPage());
     if (url.pathname === '/affiliate-disclosure') return send(res, 200, disclosurePage());
     if (url.pathname === '/privacy') return send(res, 200, privacyPage());
